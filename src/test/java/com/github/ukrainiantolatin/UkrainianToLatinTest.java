@@ -38,10 +38,10 @@ public class UkrainianToLatinTest {
         assertEquals("abvhd kh yulia", UkrainianToLatin.generateLat("абвгд х юля"));
         assertEquals("yizhak", UkrainianToLatin.generateLat("їжак"));
         assertEquals("yizhak-siryi", UkrainianToLatin.generateLat("їжак-сірий"));
-        assertEquals("rozghon", UkrainianToLatin.generateLat("Розгон"));
-        assertEquals("zghorany", UkrainianToLatin.generateLat("Згорани"));
-        assertEquals("zghorany'", UkrainianToLatin.generateLat("Згорани'"));
-        assertEquals("zghorany'", UkrainianToLatin.generateLat("Згорани’"));
+        assertEquals("Rozghon", UkrainianToLatin.generateLat("Розгон"));
+        assertEquals("Zghorany", UkrainianToLatin.generateLat("Згорани"));
+        assertEquals("Zghorany'", UkrainianToLatin.generateLat("Згорани'"));
+        assertEquals("Zghorany'", UkrainianToLatin.generateLat("Згорани’"));
     }
 
 }
