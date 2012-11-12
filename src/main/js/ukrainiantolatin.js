@@ -45,6 +45,13 @@ var StringBuilder = new Class({
     }
 });
 
+var ConvertCase = new Class({
+        initialize: function(convert, lowcase) {
+            this.convert = convert;
+            this.lowcase = lowcase;
+        }
+});
+
 var UkrainianToLatin = new Class({
     Static: {
         INDEX_0: 0,
@@ -98,35 +105,98 @@ var UkrainianToLatin = new Class({
      * @return the result
      */
     generateLat: function(name) {
+        this.initialize();
         var result = new StringBuilder();
-/*
-        ConvertCase prevConvertCase = null;
-        for (int index = 0; index < name.length(); index += 1) {
-            String curChar = name.substring(index, index + INDEX_1);
-            String nextChar = index == name.length() - 1 ? null : name.substring(index + INDEX_1, index + INDEX_2);
-            if (curChar.matches("[-'вЂ™,]")) {
-                result.append("вЂ™".equals(curChar) ? "'" : curChar);
+        var prevConvertCase = null;
+        for (var index = 0; index < name.length; index += 1) {
+            var curChar = name.substring(index, index + UkrainianToLatin.INDEX_1);
+            var nextChar = index == name.length - 1 ? null : name.substring(index + UkrainianToLatin.INDEX_1, index + UkrainianToLatin.INDEX_2);
+            if (curChar.match("[-'’,]")) {
+                result.append("’" == curChar ? "'" : curChar);
                 continue;
             }
-            if (cyrToLat.get(curChar) == null) {
-                if (" ".equals(curChar)) {
+            if (this.cyrToLat[curChar] == null) {
+                if (" " == curChar) {
                     prevConvertCase = null;
                     result.append(' ');
                 }
                 continue;
             }
-            ConvertCase convertCase = cyrToLat.get(curChar);
+            var convertCase = this.cyrToLat[curChar];
             if (prevConvertCase == null) {
-                checkFirstChar(result, convertCase, cyrToLat.get(nextChar) == null ? convertCase : cyrToLat
-                        .get(nextChar));
+                this.checkFirstChar(result, convertCase, this.cyrToLat[nextChar] == null ? convertCase : this.cyrToLat[nextChar]);
             } else {
-                checkMiddleChar(result, convertCase, cyrToLat.get(nextChar) == null ? convertCase : cyrToLat
-                        .get(nextChar));
+                this.checkMiddleChar(result, convertCase, this.cyrToLat[nextChar] == null ? convertCase : this.cyrToLat[nextChar]);
             }
             prevConvertCase = convertCase;
         }
-*/
         return result.toString();
+    },
+    checkFirstChar: function(result, convertCase, nextConvertCase) {
+        var latName = convertCase.convert;
+        switch (latName.length) {
+        case UkrainianToLatin.LENGTH_2:
+            result.append(convertCase.lowcase ? latName.substring(UkrainianToLatin.INDEX_0, UkrainianToLatin.INDEX_1).toLowerCase() : nextConvertCase
+                    .lowcase ? latName.substring(UkrainianToLatin.INDEX_0, UkrainianToLatin.INDEX_1) : latName.substring(UkrainianToLatin.INDEX_0, UkrainianToLatin.INDEX_1)
+                    .toUpperCase());
+            break;
+        case UkrainianToLatin.LENGTH_3:
+        case UkrainianToLatin.LENGTH_4:
+            result.append(convertCase.lowcase ? latName.substring(UkrainianToLatin.INDEX_0, UkrainianToLatin.INDEX_2).toLowerCase() : nextConvertCase
+                    .lowcase ? latName.substring(UkrainianToLatin.INDEX_0, UkrainianToLatin.INDEX_2) : latName.substring(UkrainianToLatin.INDEX_0, UkrainianToLatin.INDEX_2)
+                    .toUpperCase());
+            break;
+        case UkrainianToLatin.LENGTH_8:
+            result.append(convertCase.lowcase ? latName.substring(UkrainianToLatin.INDEX_0, UkrainianToLatin.INDEX_4).toLowerCase() : nextConvertCase
+                    .lowcase ? latName.substring(UkrainianToLatin.INDEX_0, UkrainianToLatin.INDEX_4) : latName.substring(UkrainianToLatin.INDEX_0, UkrainianToLatin.INDEX_4)
+                    .toUpperCase());
+            break;
+        default:
+            break;
+        }
+    },
+    /**
+     * @param result
+     * @param convertCase
+     * @param prevChar
+     */
+    checkMiddleChar: function(result, convertCase, nextConvertCase) {
+        var latName = convertCase.convert;
+        switch (latName.length) {
+        case UkrainianToLatin.LENGTH_2:
+            result.append(convertCase.lowcase ? latName.substring(UkrainianToLatin.INDEX_1, UkrainianToLatin.INDEX_2).toLowerCase() : nextConvertCase
+                    .lowcase ? latName.substring(UkrainianToLatin.INDEX_1, UkrainianToLatin.INDEX_2) : latName.substring(UkrainianToLatin.INDEX_1, UkrainianToLatin.INDEX_2)
+                    .toUpperCase());
+            break;
+        case UkrainianToLatin.LENGTH_3:
+            result.append(convertCase.lowcase ? latName.substring(UkrainianToLatin.INDEX_2, UkrainianToLatin.INDEX_3).toLowerCase() : nextConvertCase
+                    .lowcase ? latName.substring(UkrainianToLatin.INDEX_2, UkrainianToLatin.INDEX_3) : latName.substring(UkrainianToLatin.INDEX_2, UkrainianToLatin.INDEX_3)
+                    .toUpperCase());
+            break;
+        case UkrainianToLatin.LENGTH_4:
+            result.append(convertCase.lowcase ? latName.substring(UkrainianToLatin.INDEX_2, UkrainianToLatin.INDEX_4).toLowerCase() : nextConvertCase
+                    .lowcase ? latName.substring(UkrainianToLatin.INDEX_2, UkrainianToLatin.INDEX_4) : latName.substring(UkrainianToLatin.INDEX_2, UkrainianToLatin.INDEX_4)
+                    .toUpperCase());
+            break;
+        case LENGTH_8:
+            result.append(convertCase.lowcase ? latName.substring(UkrainianToLatin.INDEX_4, UkrainianToLatin.INDEX_8).toLowerCase() : nextConvertCase
+                    .lowcase ? latName.substring(UkrainianToLatin.INDEX_4, UkrainianToLatin.INDEX_8) : latName.substring(UkrainianToLatin.INDEX_4, UkrainianToLatin.INDEX_8)
+                    .toUpperCase());
+            break;
+        default:
+            break;
+        }
+    },
+    initialize: function() {
+        this.cyrToLat = {};
+        for (var convert in UkrainianToLatin.Convert) {
+            this.cyrToLat[UkrainianToLatin.Convert[convert].substring(UkrainianToLatin.INDEX_0, UkrainianToLatin.INDEX_1)] = new ConvertCase(convert, false);
+            this.cyrToLat[UkrainianToLatin.Convert[convert].substring(UkrainianToLatin.INDEX_1, UkrainianToLatin.INDEX_2)] = new ConvertCase(convert, true);
+            if (convert == UkrainianToLatin.Convert.EE) {
+                this.cyrToLat["Ё"] = new ConvertCase(convert, false);
+                this.cyrToLat["ё"] = new ConvertCase(convert, true);
+            }
+        }
     }
     }
 });
