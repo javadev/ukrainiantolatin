@@ -178,7 +178,7 @@ var UkrainianToLatin = new Class({
                     .lowcase ? latName.substring(UkrainianToLatin.INDEX_2, UkrainianToLatin.INDEX_4) : latName.substring(UkrainianToLatin.INDEX_2, UkrainianToLatin.INDEX_4)
                     .toUpperCase());
             break;
-        case LENGTH_8:
+        case UkrainianToLatin.LENGTH_8:
             result.append(convertCase.lowcase ? latName.substring(UkrainianToLatin.INDEX_4, UkrainianToLatin.INDEX_8).toLowerCase() : nextConvertCase
                     .lowcase ? latName.substring(UkrainianToLatin.INDEX_4, UkrainianToLatin.INDEX_8) : latName.substring(UkrainianToLatin.INDEX_4, UkrainianToLatin.INDEX_8)
                     .toUpperCase());
