@@ -1,1 +1,40 @@
-"My GitHub Page" 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>Ukrainian  Cyrillic-Latin conversion</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="Description" content="Online Ukrainian Cyrillic-Latin conversion">
+<meta name="Keywords" content="conversion,ukrainian,alphabet,cyrillic,latin,romanization"> 
+<style type="text/css">
+.bf {cursor:pointer; font-size:9pt; color:#666666; }
+.cadr { width:94%; color:blue; font-family:'Times New Roman'; font-size:12pt; padding:5px; scrollbar-base-color:transparent; scrollbar-track-color:transparent; }
+</style>
+<script type="text/javascript" src="https://raw.github.com/javadev/ukrainiantolatin/master/src/main/js/ukrainiantolatin-full.js"></script>
+</head>
+<body>
+<font color="#33CC00" size="5" face="Comic Sans MS">Ukrainian</font><font color="#33CC00" size="5" face="Comic Sans MS">&nbsp; <font size="4">Cyrillic-Latin 
+conversion</font></font></div>
+<div id="esp"></div>
+<div align="center"> Type or copy a text:<br>
+<noscript>
+<font color="red">Warning! JavaScript is disabled, the functionality of Lexilogos is unavailable.</font><br>
+You must enable JavaScript in your web browser : see the <a class="ext" href="http://www.enable-javascript.com/" target="_blank">instructions</a>.<p> 
+</noscript>
+<form name="transcription">
+<table width="100%"><tr align="center">
+<td width="50%"> in <span class="lien">Cyrillic</span> alphabet: <br>
+<textarea id="text1" rows="20" onKeyUp="$('text2').set('text', UkrainianToLatin.generateLat(this.value));" class="cadr"></textarea>
+<br>
+<br>
+<input type="button" onClick="transcription.text1.select();copy1()" value="copy" class="bf"> &nbsp; &nbsp; 
+<input type="button" onClick="reset();transcription.text1.focus()" value="clear" class="bf">
+</td>
+<td width="50%"> in Latin alphabet: <br>
+<textarea id="text2" rows="20" onKeyUp="latcyr()" class="cadr"></textarea>
+<br>
+<br>
+<input type="button" onClick="transcription.text2.select();copy2()" value="copy" class="bf"> &nbsp; &nbsp; 
+<input type="button" onClick="reset();transcription.text2.focus()" value="clear" class="bf">
+</td></tr></table> 
+</form>
+</div>
+<div id="espa"></div>
+</body></html>
