@@ -112,7 +112,6 @@ var UkrainianToLatin = new Class({
             var curChar = name.substring(index, index + UkrainianToLatin.INDEX_1);
             var nextChar = index == name.length - 1 ? null : name.substring(index + UkrainianToLatin.INDEX_1, index + UkrainianToLatin.INDEX_2);
             if (curChar.match("[-'’,]")) {
-                result.append("’" == curChar ? "'" : curChar);
                 continue;
             }
             if (this.cyrToLat[curChar] == null) {
@@ -139,6 +138,9 @@ var UkrainianToLatin = new Class({
             result.append(convertCase.lowcase ? latName.substring(UkrainianToLatin.INDEX_0, UkrainianToLatin.INDEX_1).toLowerCase() : nextConvertCase
                     .lowcase ? latName.substring(UkrainianToLatin.INDEX_0, UkrainianToLatin.INDEX_1) : latName.substring(UkrainianToLatin.INDEX_0, UkrainianToLatin.INDEX_1)
                     .toUpperCase());
+            if (convertCase.convert == "ZZ" && nextConvertCase.convert == "HH") {
+                result.append(nextConvertCase.lowcase ? "g" : "G");
+            }
             break;
         case UkrainianToLatin.LENGTH_3:
         case UkrainianToLatin.LENGTH_4:
@@ -167,6 +169,9 @@ var UkrainianToLatin = new Class({
             result.append(convertCase.lowcase ? latName.substring(UkrainianToLatin.INDEX_1, UkrainianToLatin.INDEX_2).toLowerCase() : nextConvertCase
                     .lowcase ? latName.substring(UkrainianToLatin.INDEX_1, UkrainianToLatin.INDEX_2) : latName.substring(UkrainianToLatin.INDEX_1, UkrainianToLatin.INDEX_2)
                     .toUpperCase());
+            if (convertCase.convert == "ZZ" && nextConvertCase.convert == "HH") {
+                result.append(nextConvertCase.lowcase ? "g" : "G");
+            }
             break;
         case UkrainianToLatin.LENGTH_3:
             result.append(convertCase.lowcase ? latName.substring(UkrainianToLatin.INDEX_2, UkrainianToLatin.INDEX_3).toLowerCase() : nextConvertCase
