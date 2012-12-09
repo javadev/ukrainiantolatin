@@ -128,7 +128,6 @@ public class UkrainianToLatin {
             String curChar = name.substring(index, index + INDEX_1);
             String nextChar = index == name.length() - 1 ? null : name.substring(index + INDEX_1, index + INDEX_2);
             if (curChar.matches("[-'’,]")) {
-                result.append("’".equals(curChar) ? "'" : curChar);
                 continue;
             }
             if (cyrToLat.get(curChar) == null) {
@@ -163,6 +162,9 @@ public class UkrainianToLatin {
             result.append(convertCase.isLowcase() ? latName.substring(INDEX_0, INDEX_1).toLowerCase() : nextConvertCase
                     .isLowcase() ? latName.substring(INDEX_0, INDEX_1) : latName.substring(INDEX_0, INDEX_1)
                     .toUpperCase());
+            if (convertCase.getConvert() == Convert.ZZ && nextConvertCase.getConvert() == Convert.HH) {
+                result.append(nextConvertCase.isLowcase() ? "g" : "G");
+            }
             break;
         case LENGTH_3:
         case LENGTH_4:
@@ -192,6 +194,9 @@ public class UkrainianToLatin {
             result.append(convertCase.isLowcase() ? latName.substring(INDEX_1, INDEX_2).toLowerCase() : nextConvertCase
                     .isLowcase() ? latName.substring(INDEX_1, INDEX_2) : latName.substring(INDEX_1, INDEX_2)
                     .toUpperCase());
+            if (convertCase.getConvert() == Convert.ZZ && nextConvertCase.getConvert() == Convert.HH) {
+                result.append(nextConvertCase.isLowcase() ? "g" : "G");
+            }
             break;
         case LENGTH_3:
             result.append(convertCase.isLowcase() ? latName.substring(INDEX_2, INDEX_3).toLowerCase() : nextConvertCase
