@@ -27,7 +27,7 @@ Class.Mutators.Static = function(items){
  */
 var StringBuilder = new Class({
     initialize: function() {
-        this._buffer = new Array();
+        this._buffer = [];
     },
 
     append: function(text) {
@@ -158,9 +158,9 @@ var UkrainianToLatin = new Class({
         }
     },
     /**
-     * @param result
-     * @param convertCase
-     * @param prevChar
+     * @param result the output string
+     * @param convertCase the current char
+     * @param nextConvertCase the next char
      */
     checkMiddleChar: function(result, convertCase, nextConvertCase) {
         var latName = convertCase.convert;

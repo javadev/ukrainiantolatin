@@ -1,7 +1,7 @@
 ukrainiantolatin
 ================
 
-The tool to convert Ukrainian words to the Latin characters (supports NBU transliteration, http://www.teren.kiev.ua/spip.php?article84)
+The tool to convert Ukrainian words to the Latin characters (supports NBU transliteration)
 
 Таблиця транслітерації українського алфавіту латиницею
 
