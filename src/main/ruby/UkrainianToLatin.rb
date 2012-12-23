@@ -111,7 +111,7 @@ class UkrainianToLatin
         @@Convert.each_pair do |key, value|
             @@cyrToLat[value[INDEX_0, INDEX_1]] = ConvertCase.new(key, false)
             @@cyrToLat[value[INDEX_1, INDEX_2]] = ConvertCase.new(key, true)
-            if key == "EE"
+            if key == :EE
                 @@cyrToLat["Ё"] = ConvertCase.new(key, false)
                 @@cyrToLat["ё"] = ConvertCase.new(key, true)
             end
