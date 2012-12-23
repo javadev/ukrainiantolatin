@@ -1,4 +1,4 @@
-﻿require "../../main/ruby/UkrainianToLatin"
+﻿require "./src/main/ruby/UkrainianToLatin"
 require "test/unit"
  
 class UkrainianToLatinTest < Test::Unit::TestCase
