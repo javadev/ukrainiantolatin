@@ -119,7 +119,7 @@ class UkrainianToLatin
     end
 
     def self.generateLat(name)
-        UkrainianToLatin.initialize
+        self.initialize
         result = StringBuilder.new();
         prevConvertCase = nil;
         name.split("").each_with_index do |curChar, index|
