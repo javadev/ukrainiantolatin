@@ -159,7 +159,7 @@ class UkrainianToLatin
             result.append(convertCase.isLowcase() ? latName[INDEX_0, INDEX_1].downcase : nextConvertCase
                     .isLowcase() ? latName[INDEX_0, INDEX_1] : latName[INDEX_0, INDEX_1]
                     .upcase);
-            if convertCase.getConvert().to_s == "ZZ" && nextConvertCase.getConvert().to_s == "HH"
+            if convertCase.getConvert() == :ZZ && nextConvertCase.getConvert() == :HH
                 result.append(nextConvertCase.isLowcase() ? "g" : "G");
             end
         when LENGTH_3, LENGTH_4
@@ -187,7 +187,7 @@ class UkrainianToLatin
             result.append(convertCase.isLowcase() ? latName[INDEX_1, INDEX_2].downcase : nextConvertCase
                     .isLowcase() ? latName[INDEX_1, INDEX_2] : latName[INDEX_1, INDEX_2]
                     .upcase);
-            if convertCase.getConvert().to_s == "ZZ" && nextConvertCase.getConvert().to_s == "HH"
+            if convertCase.getConvert() == :ZZ && nextConvertCase.getConvert() == :HH
                 result.append(nextConvertCase.isLowcase() ? "g" : "G");
             end
         when LENGTH_3
