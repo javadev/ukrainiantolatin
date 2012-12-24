@@ -1,4 +1,4 @@
-ukrainiantolatin
+ukrainiantolatin [![Build Status](https://secure.travis-ci.org/javadev/ukrainiantolatin.png)](http://travis-ci.org/javadev/ukrainiantolatin)
 ================
 
 The tool to convert Ukrainian words to the Latin characters (supports NBU transliteration)
