@@ -181,7 +181,7 @@ class UkrainianToLatin
      */
 =end
     def self.checkMiddleChar(result, convertCase, nextConvertCase)
-        String latName = convertCase.getConvert();
+        latName = convertCase.getConvert();
         case latName.length()
         when LENGTH_2
             result.append(convertCase.isLowcase() ? latName[INDEX_1, INDEX_2].downcase : nextConvertCase
