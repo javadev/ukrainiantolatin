@@ -18,26 +18,6 @@
  */
 =end
 
-class StringBuilder
-    def initialize()
-        @buffer = [];
-    end
-
-    def append(text)
-        @buffer[@buffer.length] = text;
-        return self;
-    end
-        
-    def insert(index, text)
-        @buffer.splice(index, 0, text);
-        return self;
-    end
-
-    def toString()
-        return @buffer.join("");
-    end
-end
-
 =begin
 /**
  * UkrainianToLatin utility class.
@@ -47,16 +27,31 @@ end
  */
 =end
 class UkrainianToLatin
-    INDEX_0 = 0;
-    INDEX_1 = 1;
-    INDEX_2 = 2;
-    INDEX_3 = 3;
-    INDEX_4 = 4;
-    INDEX_8 = 8;
-    LENGTH_2 = 2;
-    LENGTH_3 = 3;
-    LENGTH_4 = 4;
-    LENGTH_8 = 8;
+    class StringBuilder
+        def initialize()
+            @buffer = [];
+        end
+
+        def append(text)
+            @buffer[@buffer.length] = text;
+            return self;
+        end
+
+        def toString()
+            return @buffer.join("");
+        end
+    end
+
+    INDEX_0 = 0
+    INDEX_1 = 1
+    INDEX_2 = 2
+    INDEX_3 = 3
+    INDEX_4 = 4
+    INDEX_8 = 8
+    LENGTH_2 = 2
+    LENGTH_3 = 3
+    LENGTH_4 = 4
+    LENGTH_8 = 8
 
     @@Convert = {
         AA: "Аа",
@@ -157,19 +152,16 @@ class UkrainianToLatin
         case latName.length()
         when LENGTH_2
             result.append(convertCase.isLowcase() ? latName[INDEX_0, INDEX_1].downcase : nextConvertCase
-                    .isLowcase() ? latName[INDEX_0, INDEX_1] : latName[INDEX_0, INDEX_1]
-                    .upcase);
+                    .isLowcase() ? latName[INDEX_0, INDEX_1] : latName[INDEX_0, INDEX_1].upcase);
             if convertCase.getConvert() == :ZZ && nextConvertCase.getConvert() == :HH
                 result.append(nextConvertCase.isLowcase() ? "g" : "G");
             end
         when LENGTH_3, LENGTH_4
             result.append(convertCase.isLowcase() ? latName[INDEX_0, INDEX_2].downcase : nextConvertCase
-                    .isLowcase() ? latName[INDEX_0, INDEX_2] : latName[INDEX_0, INDEX_2]
-                    .upcase);
+                    .isLowcase() ? latName[INDEX_0, INDEX_2] : latName[INDEX_0, INDEX_2].upcase);
         when LENGTH_8
             result.append(convertCase.isLowcase() ? latName[INDEX_0, INDEX_4].downcase : nextConvertCase
-                    .isLowcase() ? latName[INDEX_0, INDEX_4] : latName[INDEX_0, INDEX_4]
-                    .upcase);
+                    .isLowcase() ? latName[INDEX_0, INDEX_4] : latName[INDEX_0, INDEX_4].upcase);
         end
     end
 
@@ -185,23 +177,19 @@ class UkrainianToLatin
         case latName.length()
         when LENGTH_2
             result.append(convertCase.isLowcase() ? latName[INDEX_1, INDEX_2].downcase : nextConvertCase
-                    .isLowcase() ? latName[INDEX_1, INDEX_2] : latName[INDEX_1, INDEX_2]
-                    .upcase);
+                    .isLowcase() ? latName[INDEX_1, INDEX_2] : latName[INDEX_1, INDEX_2].upcase);
             if convertCase.getConvert() == :ZZ && nextConvertCase.getConvert() == :HH
                 result.append(nextConvertCase.isLowcase() ? "g" : "G");
             end
         when LENGTH_3
             result.append(convertCase.isLowcase() ? latName[INDEX_2, INDEX_3].downcase : nextConvertCase
-                    .isLowcase() ? latName[INDEX_2, INDEX_3] : latName[INDEX_2, INDEX_3]
-                    .upcase);
+                    .isLowcase() ? latName[INDEX_2, INDEX_3] : latName[INDEX_2, INDEX_3].upcase);
         when LENGTH_4
             result.append(convertCase.isLowcase() ? latName[INDEX_2, INDEX_4].downcase : nextConvertCase
-                    .isLowcase() ? latName[INDEX_2, INDEX_4] : latName[INDEX_2, INDEX_4]
-                    .upcase);
+                    .isLowcase() ? latName[INDEX_2, INDEX_4] : latName[INDEX_2, INDEX_4].upcase);
         when LENGTH_8
             result.append(convertCase.isLowcase() ? latName[INDEX_4, INDEX_8].downcase : nextConvertCase
-                    .isLowcase() ? latName[INDEX_4, INDEX_8] : latName[INDEX_4, INDEX_8]
-                    .upcase);
+                    .isLowcase() ? latName[INDEX_4, INDEX_8] : latName[INDEX_4, INDEX_8].upcase);
         end
     end
 end
