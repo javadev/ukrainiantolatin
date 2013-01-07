@@ -107,7 +107,7 @@ class UkrainianToLatin {
     public static string generateLat(string name) {
         StringBuilder result = new StringBuilder();
         ConvertCase prevConvertCase = null;
-        for (int index = 0; index < name.Length - 1; index += 1) {
+        for (int index = 0; index < name.Length; index += 1) {
             string curChar = name.Substring(index, LENGTH_1);
             string nextChar = index == name.Length - 1 ? null : name.Substring(index + INDEX_1, LENGTH_1);
             if (new Regex("[-'’,]").IsMatch(curChar)) {
@@ -122,9 +122,9 @@ class UkrainianToLatin {
             }
             ConvertCase convertCase = cyrToLat[curChar];
             if (prevConvertCase == null) {
-                checkFirstChar(result, convertCase, cyrToLat.ContainsKey(nextChar) ? cyrToLat[nextChar] : convertCase);
+                checkFirstChar(result, convertCase, nextChar != null && cyrToLat.ContainsKey(nextChar) ? cyrToLat[nextChar] : convertCase);
             } else {
-                checkMiddleChar(result, convertCase, cyrToLat.ContainsKey(nextChar) ? cyrToLat[nextChar] : convertCase);
+                checkMiddleChar(result, convertCase, nextChar != null && cyrToLat.ContainsKey(nextChar) ? cyrToLat[nextChar] : convertCase);
             }
             prevConvertCase = convertCase;
         }
