@@ -37,7 +37,7 @@ class StringBuilder {
     }
         
     String toString() {
-        return Strings.join(this._buffer, "");
+        return this._buffer.join("");
     }
 }
 
