@@ -1,7 +1,7 @@
 /*
  * $Id$
  *
- * Copyright (c) 2012 Valentyn Kolesnikov
+ * Copyright 2012 Valentyn Kolesnikov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -48,70 +48,71 @@ public class UkrainianToLatinTest {
         assertEquals(expected, UkrainianToLatin.generateLat(actual));
     }
 
+    /**.*/
     @Test public void ukrainianToLatin() {
-//Аа Aа 
+//Аа Aа
         equal("Алушта Андрій", "Alushta Andrii");
-//Бб Bb 
+//Бб Bb
         equal("Борщагівка Борисенко", "Borshchahivka Borysenko");
-//Вв Vv 
+//Вв Vv
         equal("Вінниця Володимир", "Vinnytsia Volodymyr");
-//Гг Hh 
+//Гг Hh
         equal("Гадяч Богдан Згурський", "Hadiach Bohdan Zghurskyi");
-//Ґґ Gg 
+//Ґґ Gg
         equal("Ґалаґан Ґорґани", "Galagan Gorgany");
-//Дд Dd 
+//Дд Dd
         equal("Донецьк Дмитро", "Donetsk Dmytro");
-//Ее Eе 
+//Ее Eе
         equal("Рівне Олег Есмань", "Rivne Oleh Esman");
-//Єє Ye ie на початку слова в інших позиціях 
+//Єє Ye ie на початку слова в інших позиціях
         equal("Єнакієве Гаєвич Короп’є", "Yenakiieve Haievych Koropie");
-//Жж Zh zh 
+//Жж Zh zh
         equal("Житомир Жанна Жежелів", "Zhytomyr Zhanna Zhezheliv");
-//Зз Zz 
+//Зз Zz
         equal("Закарпаття Казимирчук", "Zakarpattia Kazymyrchuk");
-//Ии Yy 
+//Ии Yy
         equal("Медвин Михайленко", "Medvyn Mykhailenko");
-//Іі Ii 
+//Іі Ii
         equal("Іванків Іващенко", "Ivankiv Ivashchenko");
-//Її Yi i на початку слова в інших позиціях 
+//Її Yi i на початку слова в інших позиціях
         equal("Їжакевич Кадиївка Мар’їне", "Yizhakevych Kadyivka Marine");
-//Йй Y i на початку слова в інших позиціях 
+//Йй Y i на початку слова в інших позиціях
         equal("Йосипівка Стрий Олексій", "Yosypivka Stryi Oleksii");
-//Кк Kk 
+//Кк Kk
         equal("Київ Коваленко", "Kyiv Kovalenko");
-//Лл Ll 
+//Лл Ll
         equal("Лебедин Леонід", "Lebedyn Leonid");
-//Мм Mm 
+//Мм Mm
         equal("Миколаїв Маринич", "Mykolaiv Marynych");
-//Нн Nn 
+//Нн Nn
         equal("Ніжин Наталія", "Nizhyn Nataliia");
-//Оо Oo 
+//Оо Oo
         equal("Одеса Онищенко", "Odesa Onyshchenko");
-//Пп Pp 
+//Пп Pp
         equal("Полтава Петро", "Poltava Petro");
-//Рр Rr 
+//Рр Rr
         equal("Решетилівка Рибчинський", "Reshetylivka Rybchynskyi");
-//Сс Ss 
+//Сс Ss
         equal("Суми Соломія", "Sumy Solomiia");
-//Тт Tt 
+//Тт Tt
         equal("Тернопіль Троць", "Ternopil Trots");
-//Уу Uu 
+//Уу Uu
         equal("Ужгород Уляна", "Uzhhorod Uliana");
-//Фф Ff 
+//Фф Ff
         equal("Фастів Філіпчук", "Fastiv Filipchuk");
-//Хх Kh kh 
+//Хх Kh kh
         equal("Харків Христина", "Kharkiv Khrystyna");
-//Цц Ts ts 
+//Цц Ts ts
         equal("Біла Церква Стеценко", "Bila Tserkva Stetsenko");
-//Чч Ch ch 
+//Чч Ch ch
         equal("Чернівці Шевченко", "Chernivtsi Shevchenko");
-//Шш Sh sh 
+//Шш Sh sh
         equal("Шостка Кишеньки", "Shostka Kyshenky");
-//Щщ Shch shch 
+//Щщ Shch shch
         equal("Щербухи Гоща Гаращенко", "Shcherbukhy Hoshcha Harashchenko");
-//Юю Yu іu на початку слова в інших позиціях 
+//Юю Yu іu на початку слова в інших позиціях
         equal("Юрій Корюківка", "Yurii Koriukivka");
-//Яя Ya ia на початку слова в інших позиціях 
+//Яя Ya ia на початку слова в інших позиціях
         equal("Яготин Ярошенко Костянтин Знам’янка Феодосія", "Yahotyn Yaroshenko Kostiantyn Znamianka Feodosiia");
     }
 }

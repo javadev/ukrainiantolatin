@@ -1,7 +1,7 @@
 /*
  * $Id$
  *
- * Copyright (c) 2012 Valentyn Kolesnikov
+ * Copyright 2012 Valentyn Kolesnikov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import java.util.Map;
  * @author Valentyn Kolesnikov
  * @version $Revision$ $Date$
  */
-public class UkrainianToLatin {
+public final class UkrainianToLatin {
     private static final int INDEX_0 = 0;
     private static final int INDEX_1 = 1;
     private static final int INDEX_2 = 2;
