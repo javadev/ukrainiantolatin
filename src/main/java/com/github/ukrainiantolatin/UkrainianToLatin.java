@@ -134,6 +134,8 @@ public final class UkrainianToLatin {
                 if (" ".equals(curChar)) {
                     prevConvertCase = null;
                     result.append(' ');
+                } else if (curChar.matches("\\n")) {
+                    result.append(curChar);
                 }
                 continue;
             }
