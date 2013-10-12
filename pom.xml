@@ -10,12 +10,14 @@
   <description>The utility class to convert ukrainian words to the latin characters</description>
   
   <build>
+        <finalName>${project.artifactId}</finalName>
         <resources>
             <resource>
                 <filtering>false</filtering>
                 <directory>src/main/java</directory>
                 <includes>
                     <include>**/*.xml</include>
+                    <include>**/*.png</include>
                 </includes>
             </resource>
         </resources>
@@ -29,6 +31,50 @@
           <target>1.5</target>
           <encoding>UTF-8</encoding>
         </configuration>
+      </plugin>
+      <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>2.4</version>
+          <configuration>
+              <archive>
+                  <manifest>
+                      <mainClass>com.github.ukrainiantolatin.UkrainiantolatinApp</mainClass>
+                  </manifest>
+              </archive>
+          </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>1.4</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <filters>
+                <filter>
+                  <artifact>*:*</artifact>
+                  <excludes>
+                    <exclude>META-INF/maven/**</exclude>
+                    <exclude>META-INF/services/**</exclude>
+                    <exclude>META-INF/COPYRIGHT.html</exclude>
+                    <exclude>META-INF/LICENSE*</exclude>
+                    <exclude>META-INF/NOTICE*</exclude>
+                    <exclude>META-INF/README.txt</exclude>
+                    <exclude>META-INF/DEPENDENCIES*</exclude>
+                    <exclude>LICENSE.txt</exclude>
+                    <exclude>rhinoDiff.txt</exclude>
+                    <exclude>license/**</exclude>
+                  </excludes>
+                </filter>
+              </filters>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -65,18 +111,18 @@
             <configuration>
                 <targetJdk>1.5</targetJdk> 
                 <rulesets>
-                  <ruleset>rulesets/basic.xml</ruleset> 
-                  <ruleset>rulesets/design.xml</ruleset>
-                  <ruleset>rulesets/junit.xml</ruleset> 
-                  <ruleset>rulesets/finalizers.xml</ruleset>
-                  <ruleset>rulesets/clone.xml</ruleset> 
-                  <ruleset>rulesets/unusedcode.xml</ruleset>
-                  <ruleset>rulesets/imports.xml</ruleset>
-                  <ruleset>rulesets/strings.xml</ruleset>
-                  <ruleset>rulesets/braces.xml</ruleset>
-                  <ruleset>rulesets/codesize.xml</ruleset>
-                  <ruleset>rulesets/coupling.xml</ruleset>
-                  <ruleset>rulesets/strictexception.xml</ruleset>
+                  <ruleset>rulesets/java/basic.xml</ruleset>
+                  <ruleset>rulesets/java/design.xml</ruleset>
+                  <ruleset>rulesets/java/junit.xml</ruleset> 
+                  <ruleset>rulesets/java/finalizers.xml</ruleset>
+                  <ruleset>rulesets/java/clone.xml</ruleset> 
+                  <ruleset>rulesets/java/unusedcode.xml</ruleset>
+                  <ruleset>rulesets/java/imports.xml</ruleset>
+                  <ruleset>rulesets/java/strings.xml</ruleset>
+                  <ruleset>rulesets/java/braces.xml</ruleset>
+                  <ruleset>rulesets/java/codesize.xml</ruleset>
+                  <ruleset>rulesets/java/coupling.xml</ruleset>
+                  <ruleset>rulesets/java/strictexception.xml</ruleset>
                 </rulesets>
             </configuration>
       </plugin>
@@ -91,6 +137,11 @@
     </plugins>
   </build>
   <dependencies>
+    <dependency>
+        <groupId>net.java.dev.swing-layout</groupId>
+        <artifactId>swing-layout</artifactId>
+        <version>1.0</version>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
