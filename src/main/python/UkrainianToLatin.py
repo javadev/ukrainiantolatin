@@ -51,38 +51,38 @@ class UkrainianToLatin:
     LENGTH_8 = 8
 
     Convert = {
-        "AA": "Аа",
-        "BB": "Бб",
-        "VV": "Вв",
-        "HH": "Гг",
-        "GG": "Ґґ",
-        "DD": "Дд",
-        "EE": "Ее",
-        "YeIe": "Єє",
-        "ZhZh": "Жж",
-        "ZZ": "Зз",
-        "YY": "Ии",
-        "II": "Іі",
-        "YiI": "Її",
-        "YI": "Йй",
-        "KK": "Кк",
-        "LL": "Лл",
-        "MM": "Мм",
-        "NN": "Нн",
-        "OO": "Оо",
-        "PP": "Пп",
-        "RR": "Рр",
-        "SS": "Сс",
-        "TT": "Тт",
-        "UU": "Уу",
-        "FF": "Фф",
-        "KhKh": "Хх",
-        "TsTs": "Цц",
-        "ChCh": "Чч",
-        "ShSh": "Шш",
-        "ShchShch": "Щщ",
-        "YuIu": "Юю",
-        "YaIa": "Яя"
+        "AA": u"Аа",
+        "BB": u"Бб",
+        "VV": u"Вв",
+        "HH": u"Гг",
+        "GG": u"Ґґ",
+        "DD": u"Дд",
+        "EE": u"Ее",
+        "YeIe": u"Єє",
+        "ZhZh": u"Жж",
+        "ZZ": u"Зз",
+        "YY": u"Ии",
+        "II": u"Іі",
+        "YiI": u"Її",
+        "YI": u"Йй",
+        "KK": u"Кк",
+        "LL": u"Лл",
+        "MM": u"Мм",
+        "NN": u"Нн",
+        "OO": u"Оо",
+        "PP": u"Пп",
+        "RR": u"Рр",
+        "SS": u"Сс",
+        "TT": u"Тт",
+        "UU": u"Уу",
+        "FF": u"Фф",
+        "KhKh": u"Хх",
+        "TsTs": u"Цц",
+        "ChCh": u"Чч",
+        "ShSh": u"Шш",
+        "ShchShch": u"Щщ",
+        "YuIu": u"Юю",
+        "YaIa": u"Яя"
     }
 
     class ConvertCase:
@@ -120,6 +120,11 @@ class UkrainianToLatin:
               nextChar = name[index + UkrainianToLatin.INDEX_1 : index + UkrainianToLatin.INDEX_2]
             if re.search("[-'’,]", curChar):
                 continue
+            print ("curChar = " + curChar);
+            if curChar == u"В":
+                print "Eq B"
+            else:
+                print "Not eq B"
             if UkrainianToLatin.cyrToLat.get(curChar, None) is None:
                 if " " == curChar:
                     prevConvertCase = None
@@ -223,4 +228,4 @@ class UkrainianToLatin:
             result.append(param)
 
 
-print ("resilt" + UkrainianToLatin.generateLat("Валентин"))
+print ("result Валентин" + UkrainianToLatin.generateLat("Валентин"))
