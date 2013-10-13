@@ -16,6 +16,7 @@
  * limitations under the License.
 '''
 
+import re
 '''
  * UkrainianToLatin utility class.
  *
@@ -30,10 +31,12 @@ class UkrainianToLatin:
             self._buffer = []
     
         def append(self, text):
+            print("append - " + text)
             self._buffer.append(text)
             return self
     
         def toString(self):
+            print("toString - " + "".join(self._buffer))
             return "".join(self._buffer)
 
     INDEX_0 = 0
@@ -95,66 +98,58 @@ class UkrainianToLatin:
 
     @staticmethod
     def __init__():
-        cyrToLat = {};
-        Convert.each_pair do |key, value|
-            cyrToLat[value[INDEX_0, INDEX_1]] = ConvertCase.new(key, false)
-            cyrToLat[value[INDEX_1, INDEX_2]] = ConvertCase.new(key, true)
+        UkrainianToLatin.cyrToLat = {};
+        for key, value in UkrainianToLatin.Convert.items():
+            print ("key - " + key, ", value - " + value + ", " + value[UkrainianToLatin.INDEX_0 : UkrainianToLatin.INDEX_1])
+            UkrainianToLatin.cyrToLat[value[UkrainianToLatin.INDEX_0 : UkrainianToLatin.INDEX_1]] = UkrainianToLatin.ConvertCase(key, False)
+            UkrainianToLatin.cyrToLat[value[UkrainianToLatin.INDEX_1 : UkrainianToLatin.INDEX_2]] = UkrainianToLatin.ConvertCase(key, True)
             if key == "EE":
-                cyrToLat["Ё"] = ConvertCase.new(key, false)
-                cyrToLat["ё"] = ConvertCase.new(key, true)
+                UkrainianToLatin.cyrToLat["Ё"] = UkrainianToLatin.ConvertCase(key, False)
+                UkrainianToLatin.cyrToLat["ё"] = UkrainianToLatin.ConvertCase(key, True)
+            print ("key - " + key)
 
     @staticmethod
     def generateLat(name):
-        self.initialize
-        result = StringBuilder.new();
-        prevConvertCase = nil;
-        name.split("").each_with_index do |curChar, index|
-            if index == name.length():
+        UkrainianToLatin.__init__()
+        result = UkrainianToLatin.StringBuilder()
+        prevConvertCase = None
+        for index, curChar in enumerate(name):
+            if index == name.__len__():
               nextChar = None
             else:
-              nextChar = name[index + INDEX_1]
-            if curChar =~ /[-'’,]/
-                next
-            end
-            if cyrToLat[curChar] is None:
-                if " " == curChar
-                    prevConvertCase = nil;
-                    result.append(' ');
-                end
-                next
-            end
-            convertCase = @@cyrToLat[curChar]
-            if prevConvertCase == nil:
-                param = cyrToLat[nextChar]
-                if cyrToLat[nextChar] is None:
+              nextChar = name[index + UkrainianToLatin.INDEX_1 : index + UkrainianToLatin.INDEX_2]
+            if re.search("[-'’,]", curChar):
+                continue
+            if UkrainianToLatin.cyrToLat.get(curChar, None) is None:
+                if " " == curChar:
+                    prevConvertCase = None
+                    result.append(' ')
+                continue
+            convertCase = UkrainianToLatin.cyrToLat.get(curChar, None)
+            if prevConvertCase is None:
+                param = UkrainianToLatin.cyrToLat[nextChar]
+                if UkrainianToLatin.cyrToLat.get(nextChar, None) is None:
                     param = convertCase
-                checkFirstChar(result, convertCase, param)
+                UkrainianToLatin.checkFirstChar(result, convertCase, param)
             else:
-                param = cyrToLat[nextChar]
-                if cyrToLat[nextChar] is None:
+                param = UkrainianToLatin.cyrToLat.get(nextChar, None)
+                if UkrainianToLatin.cyrToLat.get(nextChar, None) is None:
                     param = convertCase
-                checkMiddleChar(result, convertCase, param)
+                UkrainianToLatin.checkMiddleChar(result, convertCase, param)
             prevConvertCase = convertCase
-        end
         return result.toString()
-    end
 
-     '''
-     * @param result
-     * @param convertCase
-     * @param nextConvertCase
-     '''
     @staticmethod
     def checkFirstChar(result, convertCase, nextConvertCase):
         latName = convertCase.getConvert()
-        if latName.length() == LENGTH_2:
+        if latName.__len__() == UkrainianToLatin.LENGTH_2:
             if convertCase.isLowcase():
-                param = latName[INDEX_0, INDEX_1].downcase
+                param = latName[UkrainianToLatin.INDEX_0 : UkrainianToLatin.INDEX_1].lower()
             else:
                 if nextConvertCase.isLowcase():
-                    param = latName[INDEX_0, INDEX_1]
+                    param = latName[UkrainianToLatin.INDEX_0 : UkrainianToLatin.INDEX_1]
                 else:
-                    latName[INDEX_0, INDEX_1].upcase
+                    latName[UkrainianToLatin.INDEX_0 : UkrainianToLatin.INDEX_1].upper()
             result.append(param)
             if convertCase.getConvert() == "ZZ" and nextConvertCase.getConvert() == "HH":
                 if nextConvertCase.isLowcase():
@@ -162,41 +157,36 @@ class UkrainianToLatin:
                 else:
                     param = "G"
                 result.append(param)
-        elif latName.length() == LENGTH_3 or latName.length() == LENGTH_4:
+        elif latName.__len__() == UkrainianToLatin.LENGTH_3 or latName.__len__() == UkrainianToLatin.LENGTH_4:
             if convertCase.isLowcase():
-                param = latName[INDEX_0, INDEX_2].downcase
+                param = latName[UkrainianToLatin.INDEX_0 : UkrainianToLatin.INDEX_2].lower()
             else:
                 if nextConvertCase.isLowcase():
-                    param = latName[INDEX_0, INDEX_2]:
+                    param = latName[UkrainianToLatin.INDEX_0 : UkrainianToLatin.INDEX_2]
                 else:
-                    param = latName[INDEX_0, INDEX_2].upcase
+                    param = latName[UkrainianToLatin.INDEX_0 : UkrainianToLatin.INDEX_2].upper()
             result.append(param)
-        elif latName.length() == LENGTH_8:
+        elif latName.__len__() == UkrainianToLatin.LENGTH_8:
             if convertCase.isLowcase():
-                param = latName[INDEX_0, INDEX_4].downcase
+                param = latName[UkrainianToLatin.INDEX_0 : UkrainianToLatin.INDEX_4].lower()
             else:
                 if nextConvertCase.isLowcase():
-                    param = latName[INDEX_0, INDEX_4]:
+                    param = latName[UkrainianToLatin.INDEX_0 : UkrainianToLatin.INDEX_4]
                 else:
-                    param = latName[INDEX_0, INDEX_4].upcase
+                    param = latName[UkrainianToLatin.INDEX_0 : UkrainianToLatin.INDEX_4].upper()
             result.append(param)
 
-     '''
-     * @param result
-     * @param convertCase
-     * @param nextConvertCase
-     '''
     @staticmethod
     def checkMiddleChar(result, convertCase, nextConvertCase):
         latName = convertCase.getConvert()
-        if latName.length() == LENGTH_2:
+        if latName.__len__() == UkrainianToLatin.LENGTH_2:
             if convertCase.isLowcase():
-                param = latName[INDEX_1, INDEX_2].downcase
+                param = latName[UkrainianToLatin.INDEX_1 : UkrainianToLatin.INDEX_2].lower()
             else:
                 if nextConvertCase.isLowcase():
-                    param = latName[INDEX_1, INDEX_2]:
+                    param = latName[UkrainianToLatin.INDEX_1 : UkrainianToLatin.INDEX_2]
                 else:
-                    param = latName[INDEX_1, INDEX_2].upcase
+                    param = latName[UkrainianToLatin.INDEX_1 : UkrainianToLatin.INDEX_2].upper()
             result.append(param)
             if convertCase.getConvert() == "ZZ" and nextConvertCase.getConvert() == "HH":
                 if nextConvertCase.isLowcase():
@@ -204,30 +194,33 @@ class UkrainianToLatin:
                 else:
                     param = "G"
                 result.append(param)
-        elif latName.length() == LENGTH_3:
+        elif latName.__len__() == UkrainianToLatin.LENGTH_3:
             if convertCase.isLowcase():
-                param = latName[INDEX_2, INDEX_3].downcase
+                param = latName[UkrainianToLatin.INDEX_2 : UkrainianToLatin.INDEX_3].lower()
             else:
                 if nextConvertCase.isLowcase():
-                    param = latName[INDEX_2, INDEX_3]:
+                    param = latName[UkrainianToLatin.INDEX_2 : UkrainianToLatin.INDEX_3]
                 else:
-                    param = latName[INDEX_2, INDEX_3].upcase
+                    param = latName[UkrainianToLatin.INDEX_2 : UkrainianToLatin.INDEX_3].upper()
             result.append(param)
-        elif latName.length() == LENGTH_4:
+        elif latName.__len__() == UkrainianToLatin.LENGTH_4:
             if convertCase.isLowcase():
-                param = latName[INDEX_2, INDEX_4].downcase
+                param = latName[UkrainianToLatin.INDEX_2 : UkrainianToLatin.INDEX_4].lower()
             else:
                 if nextConvertCase.isLowcase():
-                    param = latName[INDEX_2, INDEX_4]:
+                    param = latName[UkrainianToLatin.INDEX_2 : UkrainianToLatin.INDEX_4]
                 else:
-                    param = latName[INDEX_2, INDEX_4].upcase
+                    param = latName[UkrainianToLatin.INDEX_2 : UkrainianToLatin.INDEX_4].upper()
             result.append(param)
-        elif latName.length() == LENGTH_8:
+        elif latName.__len__() == UkrainianToLatin.LENGTH_8:
             if convertCase.isLowcase():
-                param = latName[INDEX_4, INDEX_8].downcase
+                param = latName[UkrainianToLatin.INDEX_4 : UkrainianToLatin.INDEX_8].down
             else:
                 if nextConvertCase.isLowcase():
-                    param = latName[INDEX_4, INDEX_8]:
+                    param = latName[UkrainianToLatin.INDEX_4 : UkrainianToLatin.INDEX_8]
                 else:
-                    param = latName[INDEX_4, INDEX_8].upcase
+                    param = latName[UkrainianToLatin.INDEX_4 : UkrainianToLatin.INDEX_8].upper()
             result.append(param)
+
+
+print ("resilt" + UkrainianToLatin.generateLat("Валентин"))
