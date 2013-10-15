@@ -101,8 +101,8 @@ class UkrainianToLatin:
         UkrainianToLatin.cyrToLat = {};
         for key, value in UkrainianToLatin.Convert.items():
             print ("key - " + key, ", value - " + value + ", " + value[UkrainianToLatin.INDEX_0 : UkrainianToLatin.INDEX_1])
-            UkrainianToLatin.cyrToLat[value[UkrainianToLatin.INDEX_0 : UkrainianToLatin.INDEX_1]] = UkrainianToLatin.ConvertCase(key, False)
-            UkrainianToLatin.cyrToLat[value[UkrainianToLatin.INDEX_1 : UkrainianToLatin.INDEX_2]] = UkrainianToLatin.ConvertCase(key, True)
+            UkrainianToLatin.cyrToLat[value.encode('utf-8')[UkrainianToLatin.INDEX_0 : UkrainianToLatin.INDEX_1]] = UkrainianToLatin.ConvertCase(key, False)
+            UkrainianToLatin.cyrToLat[value.encode('utf-8')[UkrainianToLatin.INDEX_1 : UkrainianToLatin.INDEX_2]] = UkrainianToLatin.ConvertCase(key, True)
             if key == "EE":
                 UkrainianToLatin.cyrToLat["Ё"] = UkrainianToLatin.ConvertCase(key, False)
                 UkrainianToLatin.cyrToLat["ё"] = UkrainianToLatin.ConvertCase(key, True)
@@ -114,6 +114,7 @@ class UkrainianToLatin:
         result = UkrainianToLatin.StringBuilder()
         prevConvertCase = None
         for index, curChar in enumerate(name):
+            curChar = curChar.encode('utf-8')
             if index == name.__len__():
               nextChar = None
             else:
@@ -124,7 +125,7 @@ class UkrainianToLatin:
             if curChar == u"В":
                 print "Eq B"
             else:
-                print "Not eq B"
+                print "Not eq B " + curChar
             if UkrainianToLatin.cyrToLat.get(curChar, None) is None:
                 if " " == curChar:
                     prevConvertCase = None
@@ -228,4 +229,4 @@ class UkrainianToLatin:
             result.append(param)
 
 
-print ("result Валентин" + UkrainianToLatin.generateLat("Валентин"))
+print ("result Валентин - " + UkrainianToLatin.generateLat(u"Валентин"))
