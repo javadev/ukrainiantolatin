@@ -123,9 +123,9 @@ class UkrainianToLatin:
                 continue
             print ("curChar = " + curChar);
             if curChar == u"В":
-                print "Eq B"
+                print "Eq В"
             else:
-                print "Not eq B " + curChar
+                print "Not eq В"
             if UkrainianToLatin.cyrToLat.get(curChar, None) is None:
                 if " " == curChar:
                     prevConvertCase = None
