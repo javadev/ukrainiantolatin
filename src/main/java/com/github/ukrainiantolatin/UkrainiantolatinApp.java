@@ -1,7 +1,7 @@
 /*
  * $Id$
  *
- * Copyright 2012 Valentyn Kolesnikov
+ * Copyright 2013 Valentyn Kolesnikov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,10 +27,15 @@ import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -106,6 +111,30 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
         generateResult();
         setLocation(Integer.valueOf(x), Integer.valueOf(y));
         setSize(new java.awt.Dimension(Integer.valueOf(width), Integer.valueOf(height)));
+        convertStreamToString(jTextPane1, "UkrainianToLatin.cs");
+        convertStreamToString(jTextPane2, "ukrainiantolatin.dart");
+        convertStreamToString(jTextPane3, "UkrainianToLatin.java");
+        convertStreamToString(jTextPane4, "ukrainiantolatin.js");
+        convertStreamToString(jTextPane5, "UkrainianToLatin.rb");
+        convertStreamToString(jTextPane6, "ukrainiantolatin.ts");
+    }
+    
+    private void convertStreamToString(JTextPane jTextPane, String fileName) {
+        InputStreamReader is;
+        try {
+            InputStream ins = UkrainianToLatin.class.getResourceAsStream(fileName);
+            if (ins != null) {
+                is = new InputStreamReader(ins, "utf8");
+                java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
+                jTextPane.setText(s.hasNext() ? s.next() : "");
+                jTextPane.setCaretPosition(0);
+                is.close();
+            }
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(UkrainianToLatin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(UkrainianToLatin.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 
@@ -118,15 +147,31 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jTabbedPane5 = new javax.swing.JTabbedPane();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        jTextArea6 = new javax.swing.JTextArea();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox();
+        jTabbedPane5 = new javax.swing.JTabbedPane();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTextArea6 = new javax.swing.JTextArea();
+        jPanel3 = new javax.swing.JPanel();
+        jTabbedPane3 = new javax.swing.JTabbedPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextPane2 = new javax.swing.JTextPane();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextPane3 = new javax.swing.JTextPane();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTextPane4 = new javax.swing.JTextPane();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTextPane5 = new javax.swing.JTextPane();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jTextPane6 = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ukrainian to latin converter");
@@ -147,14 +192,6 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jTextArea1);
 
         jTabbedPane1.addTab("Ukrainian text:", jScrollPane3);
-
-        jScrollPane6.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-
-        jTextArea6.setColumns(20);
-        jTextArea6.setRows(5);
-        jScrollPane6.setViewportView(jTextArea6);
-
-        jTabbedPane5.addTab("Latin text:", jScrollPane6);
 
         jButton3.setText("Clear");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -177,36 +214,107 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
             }
         });
 
+        jScrollPane6.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        jTextArea6.setColumns(20);
+        jTextArea6.setRows(5);
+        jScrollPane6.setViewportView(jTextArea6);
+
+        jTabbedPane5.addTab("Latin text:", jScrollPane6);
+
+        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel1Layout.createSequentialGroup()
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jTabbedPane1)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .add(jButton3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 197, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jButton4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jComboBox1, 0, 347, Short.MAX_VALUE))
+                    .add(jTabbedPane5))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jTabbedPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 150, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, jButton4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, jComboBox1)
+                    .add(jButton3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jTabbedPane5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane2.addTab("Converter", jPanel1);
+
+        jTabbedPane3.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+
+        jTextPane1.setBorder(null);
+        jTextPane1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jScrollPane1.setViewportView(jTextPane1);
+
+        jTabbedPane3.addTab("c#", jScrollPane1);
+
+        jTextPane2.setBorder(null);
+        jTextPane2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jScrollPane2.setViewportView(jTextPane2);
+
+        jTabbedPane3.addTab("dart", jScrollPane2);
+
+        jTextPane3.setBorder(null);
+        jTextPane3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jScrollPane4.setViewportView(jTextPane3);
+
+        jTabbedPane3.addTab("java", jScrollPane4);
+
+        jTextPane4.setBorder(null);
+        jTextPane4.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jScrollPane5.setViewportView(jTextPane4);
+
+        jTabbedPane3.addTab("js", jScrollPane5);
+
+        jTextPane5.setBorder(null);
+        jTextPane5.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jScrollPane7.setViewportView(jTextPane5);
+
+        jTabbedPane3.addTab("ruby", jScrollPane7);
+
+        jTextPane6.setBorder(null);
+        jTextPane6.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jScrollPane8.setViewportView(jTextPane6);
+
+        jTabbedPane3.addTab("typescript", jScrollPane8);
+
+        org.jdesktop.layout.GroupLayout jPanel3Layout = new org.jdesktop.layout.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jTabbedPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jTabbedPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
+        );
+
+        jTabbedPane2.addTab("Source code", jPanel3);
+
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jPanel2Layout.createSequentialGroup()
-                        .add(jButton3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 197, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(18, 18, 18)
-                        .add(jButton4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(jComboBox1, 0, 336, Short.MAX_VALUE))
-                    .add(jTabbedPane5)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jTabbedPane1))
-                .add(0, 0, 0))
+            .add(jTabbedPane2)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .add(jTabbedPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 180, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(jButton4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(jButton3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(jComboBox1))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(jTabbedPane5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-                .addContainerGap())
+            .add(jTabbedPane2)
         );
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
@@ -220,7 +328,7 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
                 .addContainerGap())
@@ -299,13 +407,29 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTabbedPane jTabbedPane5;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea6;
+    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JTextPane jTextPane2;
+    private javax.swing.JTextPane jTextPane3;
+    private javax.swing.JTextPane jTextPane4;
+    private javax.swing.JTextPane jTextPane5;
+    private javax.swing.JTextPane jTextPane6;
     // End of variables declaration//GEN-END:variables
     
 }
