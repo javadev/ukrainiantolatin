@@ -238,7 +238,13 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
             if (jComboBox1.getModel().getSize() > 20) {
                 ((DefaultComboBoxModel) jComboBox1.getModel()).removeElementAt(0);
             }
-            ((DefaultComboBoxModel) jComboBox1.getModel()).addElement(jTextArea1.getText());
+            int index = ((DefaultComboBoxModel) jComboBox1.getModel()).getIndexOf(jTextArea1.getText());
+            if (index == -1 ) {
+                ((DefaultComboBoxModel) jComboBox1.getModel()).addElement(jTextArea1.getText());
+            } else {
+                ((DefaultComboBoxModel) jComboBox1.getModel()).setSelectedItem(
+                    ((DefaultComboBoxModel) jComboBox1.getModel()).getElementAt(index));
+            }
         }
         jTextArea1.setText("");
         jTextArea6.setText("");
