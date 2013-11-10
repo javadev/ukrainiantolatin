@@ -29,6 +29,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -52,6 +54,7 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
         String y = null;
         String height = null;
         String width = null;
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
         try {
            d = new XMLDecoder(new BufferedInputStream(new FileInputStream("Ukrainiantolatin.xml")));
            jTextArea1.setText((String) d.readObject());
@@ -60,6 +63,7 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
            y = (String) d.readObject();
            height = (String) d.readObject();
            width = (String) d.readObject();
+           model = (DefaultComboBoxModel) d.readObject();
            d.close();
         } catch (Exception ex) {
             ex.getMessage();
@@ -77,6 +81,7 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
                     e.writeObject("" + getLocation().y);
                     e.writeObject("" + getSize().height);
                     e.writeObject("" + getSize().width);
+                    e.writeObject(jComboBox1.getModel());
                     e.close();
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(UkrainiantolatinApp.class.getName()).log(Level.SEVERE, null, ex);
@@ -97,6 +102,7 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
         if (width == null) {
             width = "" + getPreferredSize().width;
         }
+        jComboBox1.setModel(model);
         generateResult();
         setLocation(Integer.valueOf(x), Integer.valueOf(y));
         setSize(new java.awt.Dimension(Integer.valueOf(width), Integer.valueOf(height)));
@@ -120,6 +126,7 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
         jTextArea6 = new javax.swing.JTextArea();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ukrainian to latin converter");
@@ -164,6 +171,12 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
             }
         });
 
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -175,10 +188,11 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
                         .add(jButton3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 197, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(18, 18, 18)
                         .add(jButton4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(0, 336, Short.MAX_VALUE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(jComboBox1, 0, 336, Short.MAX_VALUE))
                     .add(jTabbedPane5)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, jTabbedPane1))
-                .addContainerGap())
+                .add(0, 0, 0))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -188,9 +202,10 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                     .add(jButton4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(jButton3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .add(jButton3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(jComboBox1))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(jTabbedPane5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                .add(jTabbedPane5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -206,8 +221,9 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
-                .add(0, 0, 0))
+                .addContainerGap()
+                .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -218,6 +234,12 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextArea1KeyReleased
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        if (!jTextArea1.getText().isEmpty()) {
+            if (jComboBox1.getModel().getSize() > 20) {
+                ((DefaultComboBoxModel) jComboBox1.getModel()).removeElementAt(0);
+            }
+            ((DefaultComboBoxModel) jComboBox1.getModel()).addElement(jTextArea1.getText());
+        }
         jTextArea1.setText("");
         jTextArea6.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -226,6 +248,11 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
         StringSelection ss = new StringSelection(jTextArea6.getText());
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        jTextArea1.setText(((JComboBox) evt.getSource()).getModel().getSelectedItem().toString());
+        generateResult();
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private static void setLookAndFeel()
         throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException
@@ -265,6 +292,7 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane6;
