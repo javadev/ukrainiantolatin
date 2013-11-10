@@ -256,6 +256,7 @@
                       <SubComponents>
                         <Component class="javax.swing.JTextPane" name="jTextPane1">
                           <Properties>
+                            <Property name="editable" type="boolean" value="false"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="null"/>
                             </Property>
@@ -282,6 +283,7 @@
                       <SubComponents>
                         <Component class="javax.swing.JTextPane" name="jTextPane2">
                           <Properties>
+                            <Property name="editable" type="boolean" value="false"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="null"/>
                             </Property>
@@ -308,6 +310,7 @@
                       <SubComponents>
                         <Component class="javax.swing.JTextPane" name="jTextPane3">
                           <Properties>
+                            <Property name="editable" type="boolean" value="false"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="null"/>
                             </Property>
@@ -334,6 +337,7 @@
                       <SubComponents>
                         <Component class="javax.swing.JTextPane" name="jTextPane4">
                           <Properties>
+                            <Property name="editable" type="boolean" value="false"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="null"/>
                             </Property>
@@ -360,6 +364,7 @@
                       <SubComponents>
                         <Component class="javax.swing.JTextPane" name="jTextPane5">
                           <Properties>
+                            <Property name="editable" type="boolean" value="false"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="null"/>
                             </Property>
@@ -386,6 +391,7 @@
                       <SubComponents>
                         <Component class="javax.swing.JTextPane" name="jTextPane6">
                           <Properties>
+                            <Property name="editable" type="boolean" value="false"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="null"/>
                             </Property>

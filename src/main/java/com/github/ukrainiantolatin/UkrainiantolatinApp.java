@@ -257,36 +257,42 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
 
         jTabbedPane3.setTabPlacement(javax.swing.JTabbedPane.LEFT);
 
+        jTextPane1.setEditable(false);
         jTextPane1.setBorder(null);
         jTextPane1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jScrollPane1.setViewportView(jTextPane1);
 
         jTabbedPane3.addTab("c#", jScrollPane1);
 
+        jTextPane2.setEditable(false);
         jTextPane2.setBorder(null);
         jTextPane2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jScrollPane2.setViewportView(jTextPane2);
 
         jTabbedPane3.addTab("dart", jScrollPane2);
 
+        jTextPane3.setEditable(false);
         jTextPane3.setBorder(null);
         jTextPane3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jScrollPane4.setViewportView(jTextPane3);
 
         jTabbedPane3.addTab("java", jScrollPane4);
 
+        jTextPane4.setEditable(false);
         jTextPane4.setBorder(null);
         jTextPane4.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jScrollPane5.setViewportView(jTextPane4);
 
         jTabbedPane3.addTab("js", jScrollPane5);
 
+        jTextPane5.setEditable(false);
         jTextPane5.setBorder(null);
         jTextPane5.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jScrollPane7.setViewportView(jTextPane5);
 
         jTabbedPane3.addTab("ruby", jScrollPane7);
 
+        jTextPane6.setEditable(false);
         jTextPane6.setBorder(null);
         jTextPane6.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jScrollPane8.setViewportView(jTextPane6);
