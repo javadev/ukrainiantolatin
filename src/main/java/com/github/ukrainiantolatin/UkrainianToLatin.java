@@ -155,7 +155,6 @@ public final class UkrainianToLatin {
     /**
      * @param result
      * @param convertCase
-     * @param prevChar
      */
     private static void checkFirstChar(StringBuffer result, ConvertCase convertCase, ConvertCase nextConvertCase) {
         String latName = convertCase.getConvert().name();
@@ -187,7 +186,6 @@ public final class UkrainianToLatin {
     /**
      * @param result
      * @param convertCase
-     * @param prevChar
      */
     private static void checkMiddleChar(StringBuffer result, ConvertCase convertCase, ConvertCase nextConvertCase) {
         String latName = convertCase.getConvert().name();
