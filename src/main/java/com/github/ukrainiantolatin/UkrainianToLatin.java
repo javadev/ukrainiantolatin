@@ -112,9 +112,6 @@ public final class UkrainianToLatin {
             }
         }
     }
-    private UkrainianToLatin() {
-        super();
-    }
 
     /**
      * Generates latinic from cyrilic.

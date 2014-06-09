@@ -42,6 +42,8 @@ public class UkrainianToLatinTest {
         assertEquals("Zghorany", UkrainianToLatin.generateLat("Згорани"));
         assertEquals("Zghorany", UkrainianToLatin.generateLat("Згорани'"));
         assertEquals("Zghorany", UkrainianToLatin.generateLat("Згорани’"));
+        assertEquals("Zghorany\nkh", UkrainianToLatin.generateLat("Згорани’\nх"));
+        new UkrainianToLatin();
     }
 
     private void equal(String actual, String expected) {
