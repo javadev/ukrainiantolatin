@@ -1,7 +1,7 @@
 /*
  * $Id$
  *
- * Copyright 2013 Valentyn Kolesnikov
+ * Copyright 2014 Valentyn Kolesnikov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -117,6 +117,7 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
         convertStreamToString(jTextPane4, "ukrainiantolatin.js");
         convertStreamToString(jTextPane5, "UkrainianToLatin.rb");
         convertStreamToString(jTextPane6, "ukrainiantolatin.ts");
+        convertStreamToString(jTextPane7, "UkrainianToLatin.groovy");
     }
     
     private void convertStreamToString(JTextPane jTextPane, String fileName) {
@@ -164,6 +165,8 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
         jTextPane1 = new javax.swing.JTextPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextPane2 = new javax.swing.JTextPane();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        jTextPane7 = new javax.swing.JTextPane();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextPane3 = new javax.swing.JTextPane();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -271,6 +274,13 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
 
         jTabbedPane3.addTab("dart", jScrollPane2);
 
+        jTextPane7.setEditable(false);
+        jTextPane7.setBorder(null);
+        jTextPane7.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jScrollPane9.setViewportView(jTextPane7);
+
+        jTabbedPane3.addTab("groovy", jScrollPane9);
+
         jTextPane3.setEditable(false);
         jTextPane3.setBorder(null);
         jTextPane3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -309,6 +319,8 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jTabbedPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
         );
+
+        jTabbedPane3.getAccessibleContext().setAccessibleName("groovy");
 
         jTabbedPane2.addTab("Source code", jPanel3);
 
@@ -424,6 +436,7 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
@@ -436,6 +449,7 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
     private javax.swing.JTextPane jTextPane4;
     private javax.swing.JTextPane jTextPane5;
     private javax.swing.JTextPane jTextPane6;
+    private javax.swing.JTextPane jTextPane7;
     // End of variables declaration//GEN-END:variables
     
 }
