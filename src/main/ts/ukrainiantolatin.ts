@@ -63,6 +63,7 @@ class UkrainianToLatin {
         static LENGTH_3 = 3;
         static LENGTH_4 = 4;
         static LENGTH_8 = 8;
+        static cyrToLat = {};
 
         static Convert = {
         AA:"Аа",
