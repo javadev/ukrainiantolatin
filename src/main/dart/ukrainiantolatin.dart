@@ -118,7 +118,7 @@ class UkrainianToLatin {
         });
     }
 
-    static string generateLat(String name) {
+    static String generateLat(String name) {
         initialize();
         StringBuilder result = new StringBuilder();
         ConvertCase prevConvertCase = null;
@@ -201,4 +201,7 @@ class UkrainianToLatin {
             break;
         }
     }
+}
+main () {
+UkrainianToLatin.generateLat("республика");
 }
