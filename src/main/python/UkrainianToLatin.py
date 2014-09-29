@@ -1,7 +1,7 @@
 ﻿'''
  * $Id$
  *
- * Copyright (c) 2013 Valentyn Kolesnikov
+ * Copyright (c) 2014 Valentyn Kolesnikov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,12 +31,10 @@ class UkrainianToLatin:
             self._buffer = []
     
         def append(self, text):
-            print("append - " + text)
             self._buffer.append(text)
             return self
     
         def toString(self):
-            print("toString - " + "".join(self._buffer))
             return "".join(self._buffer)
 
     INDEX_0 = 0
@@ -51,38 +49,38 @@ class UkrainianToLatin:
     LENGTH_8 = 8
 
     Convert = {
-        "AA": "Аа",
-        "BB": "Бб",
-        "VV": "Вв",
-        "HH": "Гг",
-        "GG": "Ґґ",
-        "DD": "Дд",
-        "EE": "Ее",
-        "YeIe": "Єє",
-        "ZhZh": "Жж",
-        "ZZ": "Зз",
-        "YY": "Ии",
-        "II": "Іі",
-        "YiI": "Її",
-        "YI": "Йй",
-        "KK": "Кк",
-        "LL": "Лл",
-        "MM": "Мм",
-        "NN": "Нн",
-        "OO": "Оо",
-        "PP": "Пп",
-        "RR": "Рр",
-        "SS": "Сс",
-        "TT": "Тт",
-        "UU": "Уу",
-        "FF": "Фф",
-        "KhKh": "Хх",
-        "TsTs": "Цц",
-        "ChCh": "Чч",
-        "ShSh": "Шш",
-        "ShchShch": "Щщ",
-        "YuIu": "Юю",
-        "YaIa": "Яя"
+        "AA": u"Аа",
+        "BB": u"Бб",
+        "VV": u"Вв",
+        "HH": u"Гг",
+        "GG": u"Ґґ",
+        "DD": u"Дд",
+        "EE": u"Ее",
+        "YeIe": u"Єє",
+        "ZhZh": u"Жж",
+        "ZZ": u"Зз",
+        "YY": u"Ии",
+        "II": u"Іі",
+        "YiI": u"Її",
+        "YI": u"Йй",
+        "KK": u"Кк",
+        "LL": u"Лл",
+        "MM": u"Мм",
+        "NN": u"Нн",
+        "OO": u"Оо",
+        "PP": u"Пп",
+        "RR": u"Рр",
+        "SS": u"Сс",
+        "TT": u"Тт",
+        "UU": u"Уу",
+        "FF": u"Фф",
+        "KhKh": u"Хх",
+        "TsTs": u"Цц",
+        "ChCh": u"Чч",
+        "ShSh": u"Шш",
+        "ShchShch": u"Щщ",
+        "YuIu": u"Юю",
+        "YaIa": u"Яя"
     }
 
     class ConvertCase:
@@ -100,14 +98,11 @@ class UkrainianToLatin:
     def __init__():
         UkrainianToLatin.cyrToLat = {};
         for key, value in UkrainianToLatin.Convert.items():
-            value = value.encode('utf-8')
-            print ("key - " + key, ", value - " + value + ", " + value[UkrainianToLatin.INDEX_0 : UkrainianToLatin.INDEX_1])
             UkrainianToLatin.cyrToLat[value[UkrainianToLatin.INDEX_0 : UkrainianToLatin.INDEX_1]] = UkrainianToLatin.ConvertCase(key, False)
             UkrainianToLatin.cyrToLat[value[UkrainianToLatin.INDEX_1 : UkrainianToLatin.INDEX_2]] = UkrainianToLatin.ConvertCase(key, True)
             if key == "EE":
-                UkrainianToLatin.cyrToLat["Ё"] = UkrainianToLatin.ConvertCase(key, False)
-                UkrainianToLatin.cyrToLat["ё"] = UkrainianToLatin.ConvertCase(key, True)
-            print ("key - " + key, ", value - " + value.encode('utf-8'))
+                UkrainianToLatin.cyrToLat[u"Ё"] = UkrainianToLatin.ConvertCase(key, False)
+                UkrainianToLatin.cyrToLat[u"ё"] = UkrainianToLatin.ConvertCase(key, True)
 
     @staticmethod
     def generateLat(name):
@@ -115,18 +110,12 @@ class UkrainianToLatin:
         result = UkrainianToLatin.StringBuilder()
         prevConvertCase = None
         for index, curChar in enumerate(name):
-            curChar = curChar.encode('utf-8')
             if index == name.__len__():
               nextChar = None
             else:
               nextChar = name[index + UkrainianToLatin.INDEX_1 : index + UkrainianToLatin.INDEX_2]
             if re.search("[-'’,]", curChar):
                 continue
-            print ("curChar = " + curChar + " - " + UkrainianToLatin.cyrToLat.get(curChar, "?"));
-            if curChar == "В":
-                print "Eq В"
-            else:
-                print "Not eq В"
             if UkrainianToLatin.cyrToLat.get(curChar, None) is None:
                 if " " == curChar:
                     prevConvertCase = None
