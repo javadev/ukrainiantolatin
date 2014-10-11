@@ -118,6 +118,7 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
         convertStreamToString(jTextPane5, "UkrainianToLatin.rb");
         convertStreamToString(jTextPane6, "ukrainiantolatin.ts");
         convertStreamToString(jTextPane7, "UkrainianToLatin.groovy");
+        convertStreamToString(jTextPane8, "UkrainianToLatin.py");
     }
     
     private void convertStreamToString(JTextPane jTextPane, String fileName) {
@@ -171,6 +172,8 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
         jTextPane3 = new javax.swing.JTextPane();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTextPane4 = new javax.swing.JTextPane();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        jTextPane8 = new javax.swing.JTextPane();
         jScrollPane7 = new javax.swing.JScrollPane();
         jTextPane5 = new javax.swing.JTextPane();
         jScrollPane8 = new javax.swing.JScrollPane();
@@ -294,6 +297,13 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
         jScrollPane5.setViewportView(jTextPane4);
 
         jTabbedPane3.addTab("js", jScrollPane5);
+
+        jTextPane8.setEditable(false);
+        jTextPane8.setBorder(null);
+        jTextPane8.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jScrollPane10.setViewportView(jTextPane8);
+
+        jTabbedPane3.addTab("python", jScrollPane10);
 
         jTextPane5.setEditable(false);
         jTextPane5.setBorder(null);
@@ -429,6 +439,7 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -450,6 +461,7 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
     private javax.swing.JTextPane jTextPane5;
     private javax.swing.JTextPane jTextPane6;
     private javax.swing.JTextPane jTextPane7;
+    private javax.swing.JTextPane jTextPane8;
     // End of variables declaration//GEN-END:variables
     
 }

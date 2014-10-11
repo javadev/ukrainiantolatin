@@ -1,7 +1,7 @@
 ﻿'''
  * $Id$
  *
- * Copyright (c) 2014 Valentyn Kolesnikov
+ * Copyright 2014 Valentyn Kolesnikov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -219,6 +219,3 @@ class UkrainianToLatin:
                 else:
                     param = latName[UkrainianToLatin.INDEX_4 : UkrainianToLatin.INDEX_8].upper()
             result.append(param)
-
-
-#print ("result Валентин - " + UkrainianToLatin.generateLat(u"Валентин"))
