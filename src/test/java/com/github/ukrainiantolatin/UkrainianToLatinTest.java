@@ -34,15 +34,28 @@ public class UkrainianToLatinTest {
     @Test public void generateLat() {
         assertEquals("", UkrainianToLatin.generateLat(""));
         assertEquals("abvhd", UkrainianToLatin.generateLat("абвгд"));
+        assertEquals("a", UkrainianToLatin.generateLat("а"));
+        assertEquals("B", UkrainianToLatin.generateLat("Б"));
         assertEquals("abvhd kh", UkrainianToLatin.generateLat("абвгд х"));
+        assertEquals("abVhd KH", UkrainianToLatin.generateLat("абВгд Х"));
+        assertEquals("abVhKH", UkrainianToLatin.generateLat("абВгХ"));
+        assertEquals("abKhhKH", UkrainianToLatin.generateLat("абХгХ"));
         assertEquals("abvhd kh yulia", UkrainianToLatin.generateLat("абвгд х юля"));
         assertEquals("yizhak", UkrainianToLatin.generateLat("їжак"));
+        assertEquals("Yizhak", UkrainianToLatin.generateLat("Їжак"));
+        assertEquals("YI", UkrainianToLatin.generateLat("Ї"));
+        assertEquals("aI", UkrainianToLatin.generateLat("аЇ"));
+        assertEquals("SHCH", UkrainianToLatin.generateLat("Щ"));
+        assertEquals("aSHCH", UkrainianToLatin.generateLat("аЩ"));
+        assertEquals("yiZhak", UkrainianToLatin.generateLat("їЖак"));
+        assertEquals("aIzhak", UkrainianToLatin.generateLat("аЇжак"));
         assertEquals("yizhaksiryi", UkrainianToLatin.generateLat("їжак-сірий"));
         assertEquals("Rozghon", UkrainianToLatin.generateLat("Розгон"));
         assertEquals("Zghorany", UkrainianToLatin.generateLat("Згорани"));
         assertEquals("Zghorany", UkrainianToLatin.generateLat("Згорани'"));
         assertEquals("Zghorany", UkrainianToLatin.generateLat("Згорани’"));
         assertEquals("Zghorany\nkh", UkrainianToLatin.generateLat("Згорани’\nх"));
+        assertEquals("aZghorany\nkh", UkrainianToLatin.generateLat("аЗгорани’\nх"));
         new UkrainianToLatin();
     }
 
