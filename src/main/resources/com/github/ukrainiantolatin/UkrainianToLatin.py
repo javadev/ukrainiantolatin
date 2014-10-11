@@ -219,3 +219,6 @@ class UkrainianToLatin:
                 else:
                     param = latName[UkrainianToLatin.INDEX_4 : UkrainianToLatin.INDEX_8].upper()
             result.append(param)
+
+
+#print ("result Валентин - " + UkrainianToLatin.generateLat(u"Валентин"))
