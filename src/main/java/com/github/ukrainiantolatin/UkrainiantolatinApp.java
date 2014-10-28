@@ -119,6 +119,7 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
         convertStreamToString(jTextPane6, "ukrainiantolatin.ts");
         convertStreamToString(jTextPane7, "UkrainianToLatin.groovy");
         convertStreamToString(jTextPane8, "UkrainianToLatin.py");
+        convertStreamToString(jTextPane9, "UkrainianToLatin.php");
     }
     
     private void convertStreamToString(JTextPane jTextPane, String fileName) {
@@ -172,6 +173,8 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
         jTextPane3 = new javax.swing.JTextPane();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTextPane4 = new javax.swing.JTextPane();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        jTextPane9 = new javax.swing.JTextPane();
         jScrollPane10 = new javax.swing.JScrollPane();
         jTextPane8 = new javax.swing.JTextPane();
         jScrollPane7 = new javax.swing.JScrollPane();
@@ -185,8 +188,6 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel2.setMaximumSize(new java.awt.Dimension(610, 444));
         jPanel2.setPreferredSize(new java.awt.Dimension(662, 447));
-
-        jScrollPane3.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -219,8 +220,6 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
                 jComboBox1ActionPerformed(evt);
             }
         });
-
-        jScrollPane6.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         jTextArea6.setColumns(20);
         jTextArea6.setRows(5);
@@ -297,6 +296,13 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
         jScrollPane5.setViewportView(jTextPane4);
 
         jTabbedPane3.addTab("js", jScrollPane5);
+
+        jTextPane9.setEditable(false);
+        jTextPane9.setBorder(null);
+        jTextPane9.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jScrollPane11.setViewportView(jTextPane9);
+
+        jTabbedPane3.addTab("php", jScrollPane11);
 
         jTextPane8.setEditable(false);
         jTextPane8.setBorder(null);
@@ -440,6 +446,7 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -462,6 +469,7 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
     private javax.swing.JTextPane jTextPane6;
     private javax.swing.JTextPane jTextPane7;
     private javax.swing.JTextPane jTextPane8;
+    private javax.swing.JTextPane jTextPane9;
     // End of variables declaration//GEN-END:variables
     
 }
