@@ -1,7 +1,7 @@
 /*
  * $Id$
  *
- * Copyright 2013 Valentyn Kolesnikov
+ * Copyright 2012 Valentyn Kolesnikov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -112,9 +112,6 @@ public final class UkrainianToLatin {
             }
         }
     }
-    private UkrainianToLatin() {
-        super();
-    }
 
     /**
      * Generates latinic from cyrilic.
@@ -153,9 +150,10 @@ public final class UkrainianToLatin {
     }
 
     /**
-     * @param result
-     * @param convertCase
-     * @param prevChar
+     * Converts first character in the word.
+     * @param result resut buffer to store string in latin
+     * @param convertCase current character object
+     * @param nextConvertCase next character object
      */
     private static void checkFirstChar(StringBuffer result, ConvertCase convertCase, ConvertCase nextConvertCase) {
         String latName = convertCase.getConvert().name();
@@ -185,9 +183,10 @@ public final class UkrainianToLatin {
     }
 
     /**
-     * @param result
-     * @param convertCase
-     * @param prevChar
+     * Converts middle or last character in the word.
+     * @param result resut buffer to store string in latin
+     * @param convertCase current character object
+     * @param nextConvertCase next character object
      */
     private static void checkMiddleChar(StringBuffer result, ConvertCase convertCase, ConvertCase nextConvertCase) {
         String latName = convertCase.getConvert().name();

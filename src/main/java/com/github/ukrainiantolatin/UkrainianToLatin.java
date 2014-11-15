@@ -150,8 +150,10 @@ public final class UkrainianToLatin {
     }
 
     /**
-     * @param result
-     * @param convertCase
+     * Converts first character in the word.
+     * @param result resut buffer to store string in latin
+     * @param convertCase current character object
+     * @param nextConvertCase next character object
      */
     private static void checkFirstChar(StringBuffer result, ConvertCase convertCase, ConvertCase nextConvertCase) {
         String latName = convertCase.getConvert().name();
@@ -181,8 +183,10 @@ public final class UkrainianToLatin {
     }
 
     /**
-     * @param result
-     * @param convertCase
+     * Converts middle or last character in the word.
+     * @param result resut buffer to store string in latin
+     * @param convertCase current character object
+     * @param nextConvertCase next character object
      */
     private static void checkMiddleChar(StringBuffer result, ConvertCase convertCase, ConvertCase nextConvertCase) {
         String latName = convertCase.getConvert().name();
