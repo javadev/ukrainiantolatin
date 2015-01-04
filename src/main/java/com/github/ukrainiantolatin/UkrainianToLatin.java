@@ -218,5 +218,10 @@ public final class UkrainianToLatin {
             break;
         }
     }
-}
 
+    public static void main(String[] args) {
+        final String message = "The utility class to convert ukrainian words to the latin characters.\n\n"
+            + "For docs, license, tests, and downloads, see: https://github.com/javadev/ukrainiantolatin";
+        System.out.println(message);
+    }
+}

@@ -138,4 +138,9 @@ public class UkrainianToLatinTest {
 //Яя Ya ia на початку слова в інших позиціях
         equal("Яготин Ярошенко Костянтин Знам’янка Феодосія", "Yahotyn Yaroshenko Kostiantyn Znamianka Feodosiia");
     }
+
+    @Test
+    public void main() {
+        UkrainianToLatin.main(new String[] {});
+    }
 }
