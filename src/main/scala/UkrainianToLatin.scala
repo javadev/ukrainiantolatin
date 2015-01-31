@@ -1,7 +1,7 @@
 /*
  * $Id$
  *
- * Copyright 2012 Valentyn Kolesnikov
+ * Copyright 2015 Valentyn Kolesnikov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import collection.immutable.ListMap
+import scala.collection.mutable.HashMap
+import scala.util.control.Breaks._
 
 /**
  * UkrainianToLatin utility class.
@@ -22,90 +25,71 @@
  * @author Valentyn Kolesnikov
  * @version $Revision$ $Date$
  */
-class UkrainianToLatin {
-    private static final int INDEX_0 = 0;
-    private static final int INDEX_1 = 1;
-    private static final int INDEX_2 = 2;
-    private static final int INDEX_3 = 3;
-    private static final int INDEX_4 = 4;
-    private static final int INDEX_8 = 8;
-    private static final int LENGTH_2 = 2;
-    private static final int LENGTH_3 = 3;
-    private static final int LENGTH_4 = 4;
-    private static final int LENGTH_8 = 8;
+object UkrainianToLatin {
+    val INDEX_0 = 0
+    val INDEX_1 = 1
+    val INDEX_2 = 2
+    val INDEX_3 = 3
+    val INDEX_4 = 4
+    val INDEX_8 = 8
+    val LENGTH_2 = 2
+    val LENGTH_3 = 3
+    val LENGTH_4 = 4
+    val LENGTH_8 = 8
 
-    private enum Convert {
-        AA("Аа"),
-        BB("Бб"),
-        VV("Вв"),
-        HH("Гг"),
-        GG("Ґґ"),
-        DD("Дд"),
-        EE("Ее"),
-        YeIe("Єє"),
-        ZhZh("Жж"),
-        ZZ("Зз"),
-        YY("Ии"),
-        II("Іі"),
-        YiI("Її"),
-        YI("Йй"),
-        KK("Кк"),
-        LL("Лл"),
-        MM("Мм"),
-        NN("Нн"),
-        OO("Оо"),
-        PP("Пп"),
-        RR("Рр"),
-        SS("Сс"),
-        TT("Тт"),
-        UU("Уу"),
-        FF("Фф"),
-        KhKh("Хх"),
-        TsTs("Цц"),
-        ChCh("Чч"),
-        ShSh("Шш"),
-        ShchShch("Щщ"),
-        YuIu("Юю"),
-        YaIa("Яя");
-        private String cyrilic;
-        private Convert(String cyrilic) {
-            this.cyrilic = cyrilic;
-        }
-        /**
-         * Gets cyrilic.
-         * @return the cyrilic
-         */
-        public String getCyrilic() {
-            return cyrilic;
-        }
+    val converts = ListMap(
+        "AA" -> "Аа",
+        "BB" -> "Бб",
+        "VV" -> "Вв",
+        "HH" -> "Гг",
+        "GG" -> "Ґґ",
+        "DD" -> "Дд",
+        "EE" -> "Ее",
+        "YeIe" -> "Єє",
+        "ZhZh" -> "Жж",
+        "ZZ" -> "Зз",
+        "YY" -> "Ии",
+        "II" -> "Іі",
+        "YiI" -> "Її",
+        "YI" -> "Йй",
+        "KK" -> "Кк",
+        "LL" -> "Лл",
+        "MM" -> "Мм",
+        "NN" -> "Нн",
+        "OO" -> "Оо",
+        "PP" -> "Пп",
+        "RR" -> "Рр",
+        "SS" -> "Сс",
+        "TT" -> "Тт",
+        "UU" -> "Уу",
+        "FF" -> "Фф",
+        "KhKh" -> "Хх",
+        "TsTs" -> "Цц",
+        "ChCh" -> "Чч",
+        "ShSh" -> "Шш",
+        "ShchShch" -> "Щщ",
+        "YuIu" -> "Юю",
+        "YaIa" -> "Яя")
 
-    }
-    private static Map<String, ConvertCase> cyrToLat;
+    var cyrToLat : HashMap[String, ConvertCase] = null
 
-    private static class ConvertCase {
-        private final Convert convert;
-        private final boolean lowcase;
-        public ConvertCase(Convert convert, boolean lowcase) {
-            this.convert = convert;
-            this.lowcase = lowcase;
+    class ConvertCase(convert: String, lowcase: Boolean) {
+        def getConvert() : String = {
+            return convert
         }
-        public Convert getConvert() {
-            return convert;
-        }
-        public boolean isLowcase() {
-            return lowcase;
+        def isLowcase() : Boolean = {
+            return lowcase
         }
     }
 
-    static {
-        cyrToLat = new HashMap<String, ConvertCase>();
-        for (Convert convert : Convert.values()) {
-            cyrToLat.put(convert.getCyrilic().substring(INDEX_0, INDEX_1), new ConvertCase(convert, false));
-            cyrToLat.put(convert.getCyrilic().substring(INDEX_1, INDEX_2), new ConvertCase(convert, true));
-            if (convert == Convert.EE) {
-                cyrToLat.put("Ё", new ConvertCase(convert, false));
-                cyrToLat.put("ё", new ConvertCase(convert, true));
-            }
+    cyrToLat = new HashMap[String, ConvertCase]()
+
+    converts.foreach {case(key, value) =>
+        cyrToLat(value.substring(INDEX_0, INDEX_1)) = new ConvertCase(key, false)
+        cyrToLat(value.substring(INDEX_1, INDEX_2)) = new ConvertCase(key, true)
+        if (key == "EE") {
+            cyrToLat("Ё") = new ConvertCase(key, false)
+            cyrToLat("ё") = new ConvertCase(key, true)
         }
     }
 
@@ -114,35 +98,40 @@ class UkrainianToLatin {
      * @param name the name
      * @return the result
      */
-    public static String generateLat(String name) {
-        StringBuffer result = new StringBuffer();
-        ConvertCase prevConvertCase = null;
-        for (int index = 0; index < name.length(); index += 1) {
-            String curChar = name.substring(index, index + INDEX_1);
-            String nextChar = index == name.length() - 1 ? null : name.substring(index + INDEX_1, index + INDEX_2);
-            if (curChar.matches("[-'’,]")) {
-                continue;
-            }
-            if (cyrToLat.get(curChar) == null) {
-                if (" ".equals(curChar)) {
-                    prevConvertCase = null;
-                    result.append(' ');
-                } else if (curChar.matches("\\n")) {
-                    result.append(curChar);
-                }
-                continue;
-            }
-            ConvertCase convertCase = cyrToLat.get(curChar);
-            if (prevConvertCase == null) {
-                checkFirstChar(result, convertCase, cyrToLat.get(nextChar) == null ? convertCase : cyrToLat
-                        .get(nextChar));
-            } else {
-                checkMiddleChar(result, convertCase, cyrToLat.get(nextChar) == null ? convertCase : cyrToLat
-                        .get(nextChar));
-            }
-            prevConvertCase = convertCase;
+    def generateLat(name : String) : String = {
+        if (name == null) {
+            throw new IllegalArgumentException("name is null");
         }
-        return result.toString();
+        val result : StringBuilder = new StringBuilder()
+        var prevConvertCase : ConvertCase = null
+        for (index <- 0 until name.length()) {
+            val curChar : String = name.substring(index, index + INDEX_1)
+            val nextChar : String = if (index == name.length() - 1) null else name.substring(index + INDEX_1, index + INDEX_2)
+            breakable {
+                if (curChar.matches("[-'’,]")) {
+                    break
+                }
+                if (cyrToLat.get(curChar).getOrElse(null) == null) {
+                    if (" ".equals(curChar)) {
+                        prevConvertCase = null
+                        result.append(' ')
+                    } else if (curChar.matches("\\n")) {
+                        result.append(curChar)
+                    }
+                    break
+                }
+                val convertCase : ConvertCase = cyrToLat.get(curChar).getOrElse(null)
+                if (prevConvertCase == null) {
+                    checkFirstChar(result, convertCase, if (cyrToLat.get(nextChar).getOrElse(null) == null) convertCase else cyrToLat
+                            .get(nextChar).getOrElse(null))
+                } else {
+                    checkMiddleChar(result, convertCase, if (cyrToLat.get(nextChar).getOrElse(null) == null) convertCase else cyrToLat
+                            .get(nextChar).getOrElse(null))
+                }
+                prevConvertCase = convertCase
+            }
+        }
+        return result.toString()
     }
 
     /**
@@ -151,30 +140,24 @@ class UkrainianToLatin {
      * @param convertCase current character object
      * @param nextConvertCase next character object
      */
-    private static void checkFirstChar(StringBuffer result, ConvertCase convertCase, ConvertCase nextConvertCase) {
-        String latName = convertCase.getConvert().name();
-        switch (latName.length()) {
-        case LENGTH_2:
-            result.append(convertCase.isLowcase() ? latName.substring(INDEX_0, INDEX_1).toLowerCase() : nextConvertCase
-                    .isLowcase() ? latName.substring(INDEX_0, INDEX_1) : latName.substring(INDEX_0, INDEX_1)
-                    .toUpperCase());
-            if (convertCase.getConvert() == Convert.ZZ && nextConvertCase.getConvert() == Convert.HH) {
-                result.append(nextConvertCase.isLowcase() ? "g" : "G");
+    def checkFirstChar(result : StringBuilder, convertCase : ConvertCase, nextConvertCase : ConvertCase) = {
+        val latName : String = convertCase.getConvert()
+        latName.length() match {
+        case LENGTH_2 =>
+            result.append(if (convertCase.isLowcase()) latName.substring(INDEX_0, INDEX_1).toLowerCase() else if (nextConvertCase
+                    .isLowcase()) latName.substring(INDEX_0, INDEX_1) else latName.substring(INDEX_0, INDEX_1)
+                    .toUpperCase())
+            if (convertCase.getConvert() == "ZZ" && nextConvertCase.getConvert() == "HH") {
+                result.append(if (nextConvertCase.isLowcase()) "g" else "G")
             }
-            break;
-        case LENGTH_3:
-        case LENGTH_4:
-            result.append(convertCase.isLowcase() ? latName.substring(INDEX_0, INDEX_2).toLowerCase() : nextConvertCase
-                    .isLowcase() ? latName.substring(INDEX_0, INDEX_2) : latName.substring(INDEX_0, INDEX_2)
-                    .toUpperCase());
-            break;
-        case LENGTH_8:
-            result.append(convertCase.isLowcase() ? latName.substring(INDEX_0, INDEX_4).toLowerCase() : nextConvertCase
-                    .isLowcase() ? latName.substring(INDEX_0, INDEX_4) : latName.substring(INDEX_0, INDEX_4)
-                    .toUpperCase());
-            break;
-        default:
-            break;
+        case LENGTH_3 | LENGTH_4 =>
+            result.append(if (convertCase.isLowcase()) latName.substring(INDEX_0, INDEX_2).toLowerCase() else if (nextConvertCase
+                    .isLowcase()) latName.substring(INDEX_0, INDEX_2) else latName.substring(INDEX_0, INDEX_2)
+                    .toUpperCase())
+        case LENGTH_8 =>
+            result.append(if (convertCase.isLowcase()) latName.substring(INDEX_0, INDEX_4).toLowerCase() else if (nextConvertCase
+                    .isLowcase()) latName.substring(INDEX_0, INDEX_4) else latName.substring(INDEX_0, INDEX_4)
+                    .toUpperCase())
         }
     }
 
@@ -184,40 +167,34 @@ class UkrainianToLatin {
      * @param convertCase current character object
      * @param nextConvertCase next character object
      */
-    private static void checkMiddleChar(StringBuffer result, ConvertCase convertCase, ConvertCase nextConvertCase) {
-        String latName = convertCase.getConvert().name();
-        switch (latName.length()) {
-        case LENGTH_2:
-            result.append(convertCase.isLowcase() ? latName.substring(INDEX_1, INDEX_2).toLowerCase() : nextConvertCase
-                    .isLowcase() ? latName.substring(INDEX_1, INDEX_2) : latName.substring(INDEX_1, INDEX_2)
-                    .toUpperCase());
-            if (convertCase.getConvert() == Convert.ZZ && nextConvertCase.getConvert() == Convert.HH) {
-                result.append(nextConvertCase.isLowcase() ? "g" : "G");
+    def checkMiddleChar(result : StringBuilder, convertCase : ConvertCase, nextConvertCase : ConvertCase) = {
+        val latName : String = convertCase.getConvert()
+        latName.length() match {
+        case LENGTH_2 =>
+            result.append(if (convertCase.isLowcase()) latName.substring(INDEX_1, INDEX_2).toLowerCase() else if (nextConvertCase
+                    .isLowcase()) latName.substring(INDEX_1, INDEX_2) else latName.substring(INDEX_1, INDEX_2)
+                    .toUpperCase())
+            if (convertCase.getConvert() == "ZZ" && nextConvertCase.getConvert() == "HH") {
+                result.append(if (nextConvertCase.isLowcase()) "g" else "G")
             }
-            break;
-        case LENGTH_3:
-            result.append(convertCase.isLowcase() ? latName.substring(INDEX_2, INDEX_3).toLowerCase() : nextConvertCase
-                    .isLowcase() ? latName.substring(INDEX_2, INDEX_3) : latName.substring(INDEX_2, INDEX_3)
+        case LENGTH_3 =>
+            result.append(if (convertCase.isLowcase()) latName.substring(INDEX_2, INDEX_3).toLowerCase() else if (nextConvertCase
+                    .isLowcase()) latName.substring(INDEX_2, INDEX_3) else latName.substring(INDEX_2, INDEX_3)
                     .toUpperCase());
-            break;
-        case LENGTH_4:
-            result.append(convertCase.isLowcase() ? latName.substring(INDEX_2, INDEX_4).toLowerCase() : nextConvertCase
-                    .isLowcase() ? latName.substring(INDEX_2, INDEX_4) : latName.substring(INDEX_2, INDEX_4)
+        case LENGTH_4 =>
+            result.append(if (convertCase.isLowcase()) latName.substring(INDEX_2, INDEX_4).toLowerCase() else if (nextConvertCase
+                    .isLowcase()) latName.substring(INDEX_2, INDEX_4) else latName.substring(INDEX_2, INDEX_4)
                     .toUpperCase());
-            break;
-        case LENGTH_8:
-            result.append(convertCase.isLowcase() ? latName.substring(INDEX_4, INDEX_8).toLowerCase() : nextConvertCase
-                    .isLowcase() ? latName.substring(INDEX_4, INDEX_8) : latName.substring(INDEX_4, INDEX_8)
+        case LENGTH_8 =>
+            result.append(if (convertCase.isLowcase()) latName.substring(INDEX_4, INDEX_8).toLowerCase() else if (nextConvertCase
+                    .isLowcase()) latName.substring(INDEX_4, INDEX_8) else latName.substring(INDEX_4, INDEX_8)
                     .toUpperCase());
-            break;
-        default:
-            break;
         }
     }
 
-    public static void main(String[] args) {
-        final String message = "The utility class to convert ukrainian words to the latin characters.\n\n"
-            + "For docs, license, tests, and downloads, see: https://github.com/javadev/ukrainiantolatin";
-        System.out.println(message);
+    def main(args: Array[String]) {
+        val message = "The utility class to convert ukrainian words to the latin characters.\n\n" +
+        "For docs, license, tests, and downloads, see: https://github.com/javadev/ukrainiantolatin"
+        print(message)
     }
 }
