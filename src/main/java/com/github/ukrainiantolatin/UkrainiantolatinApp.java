@@ -121,6 +121,7 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
         convertStreamToString(jTextPane7, "UkrainianToLatin.groovy");
         convertStreamToString(jTextPane8, "UkrainianToLatin.py");
         convertStreamToString(jTextPane9, "UkrainianToLatin.php");
+        convertStreamToString(jTextPane11, "UkrainianToLatin.scala");
     }
     
     private void convertStreamToString(JTextPane jTextPane, String fileName) {
@@ -182,6 +183,8 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
         jTextPane8 = new javax.swing.JTextPane();
         jScrollPane7 = new javax.swing.JScrollPane();
         jTextPane5 = new javax.swing.JTextPane();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        jTextPane11 = new javax.swing.JTextPane();
         jScrollPane8 = new javax.swing.JScrollPane();
         jTextPane6 = new javax.swing.JTextPane();
 
@@ -242,7 +245,7 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jButton4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jComboBox1, 0, 442, Short.MAX_VALUE))
+                        .add(jComboBox1, 0, 508, Short.MAX_VALUE))
                     .add(jTabbedPane5))
                 .addContainerGap())
         );
@@ -328,6 +331,13 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
 
         jTabbedPane3.addTab("ruby", jScrollPane7);
 
+        jTextPane11.setEditable(false);
+        jTextPane11.setBorder(null);
+        jTextPane11.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jScrollPane13.setViewportView(jTextPane11);
+
+        jTabbedPane3.addTab("scala", jScrollPane13);
+
         jTextPane6.setEditable(false);
         jTextPane6.setBorder(null);
         jTextPane6.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -339,11 +349,14 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jTabbedPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 695, Short.MAX_VALUE)
+            .add(jTabbedPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 761, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jTabbedPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jTabbedPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane3.getAccessibleContext().setAccessibleName("groovy");
@@ -367,7 +380,7 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 704, Short.MAX_VALUE)
+                .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -458,6 +471,7 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -474,6 +488,7 @@ public class UkrainiantolatinApp extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea6;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JTextPane jTextPane10;
+    private javax.swing.JTextPane jTextPane11;
     private javax.swing.JTextPane jTextPane2;
     private javax.swing.JTextPane jTextPane3;
     private javax.swing.JTextPane jTextPane4;
