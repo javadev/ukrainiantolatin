@@ -55,7 +55,7 @@ public class UkrainianToLatinTest {
         assertEquals("SHCHB", UkrainianToLatin.generateLat("ЩБ"));
         assertEquals("yiZhak", UkrainianToLatin.generateLat("їЖак"));
         assertEquals("aIzhak", UkrainianToLatin.generateLat("аЇжак"));
-        assertEquals("yizhaksiryi", UkrainianToLatin.generateLat("їжак-сірий"));
+        assertEquals("yizhak-siryi", UkrainianToLatin.generateLat("їжак-сірий"));
         assertEquals("Rozghon", UkrainianToLatin.generateLat("Розгон"));
         assertEquals("Zghorany", UkrainianToLatin.generateLat("Згорани"));
         assertEquals("ZGHorany", UkrainianToLatin.generateLat("ЗГорани"));
