@@ -1,7 +1,7 @@
 /*
  * $Id$
  *
- * Copyright 2012 Valentyn Kolesnikov
+ * Copyright 2015 Valentyn Kolesnikov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,8 +17,11 @@
  */
 package com.github.ukrainiantolatin;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * UkrainianToLatin utility class.
@@ -37,6 +40,8 @@ public final class UkrainianToLatin {
     private static final int LENGTH_3 = 3;
     private static final int LENGTH_4 = 4;
     private static final int LENGTH_8 = 8;
+    private static final Set<String> PUNCTUATIONS = new HashSet<String>(Arrays.asList(
+        ",", "-", "!", "?", ":", ";", ".", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "…", "—", "“", "”"));
 
     private enum Convert {
         AA("Аа"),
@@ -124,14 +129,11 @@ public final class UkrainianToLatin {
         for (int index = 0; index < name.length(); index += 1) {
             String curChar = name.substring(index, index + INDEX_1);
             String nextChar = index == name.length() - 1 ? null : name.substring(index + INDEX_1, index + INDEX_2);
-            if (curChar.matches("[-'’,]")) {
-                continue;
-            }
             if (cyrToLat.get(curChar) == null) {
                 if (" ".equals(curChar)) {
                     prevConvertCase = null;
                     result.append(' ');
-                } else if (curChar.matches("\\n")) {
+                } else if (curChar.matches("\\n") || PUNCTUATIONS.contains(curChar)) {
                     result.append(curChar);
                 }
                 continue;
