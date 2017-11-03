@@ -6,6 +6,32 @@ ukrainiantolatin
 [![Coverage Status](https://coveralls.io/repos/javadev/ukrainiantolatin/badge.svg)](https://coveralls.io/r/javadev/ukrainiantolatin)
 [![Dependency Status](https://www.versioneye.com/user/projects/576ad67cfdabcd003d086d82/badge.svg?style=flat)](https://www.versioneye.com/user/projects/576ad67cfdabcd003d086d82)
 
+Requirements
+============
+
+Java 1.6 and later.
+
+## Installation
+
+Include the following in your `pom.xml` for Maven:
+
+```
+<dependencies>
+  <dependency>
+    <groupId>com.github.javadev</groupId>
+    <artifactId>ukrainiantolatin</artifactId>
+    <version>1.2</version>
+  </dependency>
+  ...
+</dependencies>
+```
+
+Gradle:
+
+```groovy
+compile 'com.github.javadev:ukrainiantolatin:1.2'
+```
+
 The tool to convert Ukrainian words to the Latin characters (supports NBU transliteration)
 
 Таблиця транслітерації українського алфавіту латиницею
