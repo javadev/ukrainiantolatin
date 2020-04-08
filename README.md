@@ -14,7 +14,7 @@ Java 1.6 and later.
 
 Include the following in your `pom.xml` for Maven:
 
-```
+```xml
 <dependencies>
   <dependency>
     <groupId>com.github.javadev</groupId>
