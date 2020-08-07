@@ -1,7 +1,7 @@
 /*
  * $Id$
  *
- * Copyright 2013 Valentyn Kolesnikov
+ * Copyright 2013-2020 Valentyn Kolesnikov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ class UkrainianToLatinTest {
     void setup() {
     }
 
-    void assert_equal(string expected, string actual) {
+    void assert_equal(String expected, String actual) {
         if (expected != actual) {
             throw new ExpectException("expected: (".concat(expected).concat(") actual: (").concat(actual).concat(")"));
         }
