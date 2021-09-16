@@ -2,7 +2,7 @@ ukrainiantolatin
 ================
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.javadev/ukrainiantolatin.svg)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.github.javadev%22%20AND%20a%3A%22ukrainiantolatin%22)
-[![Build Status](https://secure.travis-ci.org/javadev/ukrainiantolatin.svg)](http://travis-ci.org/javadev/ukrainiantolatin)
+[![Java CI](https://github.com/javadev/ukrainiantolatin/actions/workflows/maven.yml/badge.svg)](https://github.com/javadev/ukrainiantolatin/actions/workflows/maven.yml)
 [![Coverage Status](https://coveralls.io/repos/javadev/ukrainiantolatin/badge.svg)](https://coveralls.io/r/javadev/ukrainiantolatin)
 
 Requirements
