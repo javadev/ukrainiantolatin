@@ -3,12 +3,13 @@ ukrainiantolatin
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.javadev/ukrainiantolatin.svg)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.github.javadev%22%20AND%20a%3A%22ukrainiantolatin%22)
 [![Java CI](https://github.com/javadev/ukrainiantolatin/actions/workflows/maven.yml/badge.svg)](https://github.com/javadev/ukrainiantolatin/actions/workflows/maven.yml)
+[![CodeQL](https://github.com/javadev/ukrainiantolatin/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/javadev/ukrainiantolatin/actions/workflows/codeql-analysis.yml)
 [![Coverage Status](https://coveralls.io/repos/javadev/ukrainiantolatin/badge.svg)](https://coveralls.io/r/javadev/ukrainiantolatin)
 
 Requirements
 ============
 
-Java 1.6 and later.
+Java 1.8 and later.
 
 ## Installation
 
