@@ -71,6 +71,6 @@ The tool to convert Ukrainian words to the Latin characters (supports NBU transl
 | Юю                   | Yu/iu     | на початку слова в інших позиціях | Юрій Корюківка                        | Yurii Koriukivka              |
 | Яя                   | Ya/ia     | на початку слова в інших позиціях | Яготин Ярошенко Костянтин Знам’янка Феодосія | Yahotyn Yaroshenko Kostiantyn Znamianka Feodosiia |
 
-[![Screen short](https://raw.github.com/javadev/ukrainiantolatin/master/ukrtolatin.png)](http://javadev.github.com/ukrainiantolatin/)
+[![Screen short](https://raw.github.com/javadev/ukrainiantolatin/master/ukrtolatin.png)](http://javadev.github.io/ukrainiantolatin/)
 
-[![Screen short](https://raw.github.com/javadev/ukrainiantolatin/master/ukrtolatin2.png)](http://javadev.github.com/ukrainiantolatin/)
+[![Screen short](https://raw.github.com/javadev/ukrainiantolatin/master/ukrtolatin2.png)](http://javadev.github.io/ukrainiantolatin/)
