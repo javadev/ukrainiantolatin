@@ -1,7 +1,7 @@
 /*
  * $Id$
  *
- * Copyright 2013 Valentyn Kolesnikov
+ * Copyright (c) 2012 Valentyn Kolesnikov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -63,6 +63,7 @@ class UkrainianToLatin {
         static LENGTH_3 = 3;
         static LENGTH_4 = 4;
         static LENGTH_8 = 8;
+        static cyrToLat = {};
 
         static Convert = {
         AA:"Аа",

@@ -41,7 +41,8 @@ public final class UkrainianToLatin {
     private static final int LENGTH_4 = 4;
     private static final int LENGTH_8 = 8;
     private static final Set<String> PUNCTUATIONS = new HashSet<String>(Arrays.asList(
-        ",", "-", "!", "?", ":", ";", ".", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "…", "—", "“", "”"));
+        ",", "-", "!", "?", ":", ";", ".", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "…", "—", "“", "”",
+        "«", "»", "[", "]", "–", "(", ")", "№", "{", "}", "/", "\\"));
 
     private enum Convert {
         AA("Аа"),
